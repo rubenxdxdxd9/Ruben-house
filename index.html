@@ -48,12 +48,13 @@
       background: #e8eef7;
     }
 
-    button:focus-visible {
+    button:focus-visible,
+    input:focus-visible {
       outline: 3px solid #ffdc73;
       outline-offset: 4px;
     }
 
-    main {
+    main, .seccion-personal {
       max-width: 700px;
       margin: 0 auto;
       padding: 3rem 1rem;
@@ -66,6 +67,25 @@
       height: auto;
       margin: 1.5rem auto;
       border-radius: 12px;
+    }
+
+    .acceso-personal {
+      display: grid;
+      justify-items: center;
+      gap: 1rem;
+      margin: 2rem auto;
+    }
+
+    input {
+      width: min(100%, 300px);
+      padding: 0.8rem 1rem;
+      border: 1px solid #aab8ca;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .error {
+      color: #a32121;
     }
 
     [hidden] {
@@ -88,16 +108,51 @@
       height="448"
       alt="Imagen del proyecto Ruben-house"
       src="https://github.com/user-attachments/assets/2399f6a0-ffcc-421a-9b70-b200dd2897fb">
+
+    <button type="button" id="boton-informacion">Información personal</button>
+
+    <form class="acceso-personal" id="formulario-contrasena" hidden>
+      <label for="contrasena">Introduce la contraseña para continuar:</label>
+      <input id="contrasena" type="password" autocomplete="off" required>
+      <button type="submit">Continuar</button>
+      <p class="error" id="mensaje-error" role="alert" hidden>Contraseña incorrecta. Inténtalo otra vez.</p>
+    </form>
   </main>
 
+  <section class="seccion-personal" id="seccion-personal" hidden aria-labelledby="nombre-personal">
+    <h1 id="nombre-personal">Rubén Andrés Arnaz</h1>
+    <p>1ºBach</p>
+  </section>
+
   <script>
-    const botonInicio = document.getElementById('boton-inicio');
     const pantallaInicio = document.getElementById('pantalla-inicio');
     const contenido = document.getElementById('contenido');
+    const formulario = document.getElementById('formulario-contrasena');
+    const campoContrasena = document.getElementById('contrasena');
+    const mensajeError = document.getElementById('mensaje-error');
+    const seccionPersonal = document.getElementById('seccion-personal');
 
-    botonInicio.addEventListener('click', () => {
+    document.getElementById('boton-inicio').addEventListener('click', () => {
       pantallaInicio.hidden = true;
       contenido.hidden = false;
+    });
+
+    document.getElementById('boton-informacion').addEventListener('click', () => {
+      formulario.hidden = false;
+      campoContrasena.focus();
+    });
+
+    formulario.addEventListener('submit', (evento) => {
+      evento.preventDefault();
+
+      if (campoContrasena.value === 'ruben') {
+        contenido.hidden = true;
+        seccionPersonal.hidden = false;
+      } else {
+        mensajeError.hidden = false;
+        campoContrasena.value = '';
+        campoContrasena.focus();
+      }
     });
   </script>
 </body>
