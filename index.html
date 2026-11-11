@@ -10,16 +10,12 @@
       --azul-medio: #163a5f;
       --azul-claro: #4f8fc9;
       --blanco: #ffffff;
-      --gris-claro: #eef4fb;
       --gris-oscuro: #334155;
       --rojo: #b91c1c;
-      --verde: #1f7a5d;
       --sombra: rgba(15, 23, 42, 0.2);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     html, body {
       margin: 0;
@@ -29,9 +25,7 @@
       color: var(--azul-oscuro);
     }
 
-    body {
-      min-height: 100vh;
-    }
+    body { min-height: 100vh; }
 
     .pantalla-inicio {
       min-height: 100vh;
@@ -94,15 +88,13 @@
       box-shadow: 0 8px 18px rgba(0,0,0,0.18);
     }
 
-    .btn-primary {
-      background: var(--blanco);
-      color: var(--azul-medio);
+    .btn:focus-visible, input:focus-visible {
+      outline: 3px solid #ffdc73;
+      outline-offset: 4px;
     }
 
-    .btn-secondary {
-      background: var(--azul-medio);
-      color: var(--blanco);
-    }
+    .btn-primary { background: var(--blanco); color: var(--azul-medio); }
+    .btn-secondary { background: var(--azul-medio); color: var(--blanco); }
 
     main {
       max-width: 900px;
@@ -156,10 +148,7 @@
       text-align: left;
     }
 
-    .formulario label {
-      font-weight: bold;
-      color: var(--azul-oscuro);
-    }
+    .formulario label { font-weight: bold; color: var(--azul-oscuro); }
 
     .formulario input {
       width: 100%;
@@ -178,43 +167,34 @@
     }
 
     .info-personal {
-      margin-top: 2rem;
-      background: linear-gradient(180deg, #f7fbff, #edf5fd);
+      max-width: 700px;
+      margin: 3rem auto;
+      padding: 3rem 1.5rem;
+      text-align: center;
+      background: linear-gradient(180deg, #ffffff, #edf5fd);
       border: 1px solid #d9e7f9;
       border-radius: 24px;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
     }
 
-    .info-personal h3 {
-      margin: 0 0 0.5rem;
+    .info-personal h2 {
+      margin: 0 0 0.7rem;
       font-size: clamp(1.8rem, 4vw, 2.5rem);
       color: var(--azul-oscuro);
     }
 
     .info-personal p {
-      margin: 0;
+      margin: 0 0 2rem;
       font-size: 1.2rem;
       color: var(--gris-oscuro);
     }
 
-    [hidden] {
-      display: none !important;
-    }
+    [hidden] { display: none !important; }
 
     @media (max-width: 600px) {
-      .contenido-portada {
-        padding: 2rem 1.2rem;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .acciones {
-        flex-direction: column;
-      }
+      .contenido-portada { padding: 2rem 1.2rem; }
+      .btn { width: 100%; }
+      .acciones { flex-direction: column; }
     }
   </style>
 </head>
@@ -232,11 +212,9 @@
     <div class="card">
       <h2>Ruben-house</h2>
       <p class="subtitulo">Proyecto de un alumno de 1ºBACH</p>
-
       <img
         alt="Proyecto Ruben-house"
-        src="https://github.com/user-attachments/assets/2399f6a0-ffcc-421a-9b70-b200dd2897fb"
-      >
+        src="https://github.com/user-attachments/assets/2399f6a0-ffcc-421a-9b70-b200dd2897fb">
 
       <div class="acciones">
         <button class="btn btn-secondary" type="button" id="boton-informacion">Información personal</button>
@@ -244,29 +222,29 @@
 
       <form class="formulario" id="formulario-contrasena" hidden>
         <label for="contrasena">Introduce la contraseña:</label>
-        <input id="contrasena" type="password" placeholder="Contraseña" autocomplete="off">
+        <input id="contrasena" type="password" placeholder="Contraseña" autocomplete="off" required>
         <button type="submit" class="btn btn-secondary">Acceder</button>
         <div class="error" id="mensaje-error" aria-live="polite"></div>
       </form>
     </div>
-
-    <section id="seccion-personal" class="info-personal" hidden>
-      <h3>Rubén Andrés Arnaz</h3>
-      <p>1ºBach</p>
-    </section>
   </main>
+
+  <section id="seccion-personal" class="info-personal" hidden>
+    <h2>Rubén Andrés Arnaz</h2>
+    <p>1ºBach</p>
+    <button class="btn btn-secondary" type="button" id="boton-atras">← Atrás</button>
+  </section>
 
   <script>
     const pantallaInicio = document.getElementById('pantalla-inicio');
     const contenido = document.getElementById('contenido');
-    const botonInicio = document.getElementById('boton-inicio');
     const botonInformacion = document.getElementById('boton-informacion');
     const formulario = document.getElementById('formulario-contrasena');
     const campoPassword = document.getElementById('contrasena');
     const mensajeError = document.getElementById('mensaje-error');
     const seccionPersonal = document.getElementById('seccion-personal');
 
-    botonInicio.addEventListener('click', () => {
+    document.getElementById('boton-inicio').addEventListener('click', () => {
       pantallaInicio.hidden = true;
       contenido.hidden = false;
     });
@@ -288,6 +266,15 @@
         campoPassword.value = '';
         campoPassword.focus();
       }
+    });
+
+    document.getElementById('boton-atras').addEventListener('click', () => {
+      seccionPersonal.hidden = true;
+      contenido.hidden = false;
+      formulario.hidden = true;
+      campoPassword.value = '';
+      mensajeError.textContent = '';
+      botonInformacion.focus();
     });
   </script>
 </body>
