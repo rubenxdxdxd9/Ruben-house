@@ -1,13 +1,104 @@
-Ruben-house
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Ruben-house</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ruben-house</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #243047;
+      background: #f2f5fa;
+    }
+
+    .pantalla-inicio {
+      min-height: 100vh;
+      display: grid;
+      place-content: center;
+      justify-items: center;
+      gap: 1rem;
+      padding: 2rem;
+      text-align: center;
+      color: white;
+      background: linear-gradient(135deg, #294c7a, #497bb5);
+    }
+
+    .pantalla-inicio h1 {
+      margin: 0;
+      font-size: clamp(2.5rem, 8vw, 5rem);
+    }
+
+    button {
+      padding: 0.9rem 2rem;
+      border: 0;
+      border-radius: 999px;
+      color: #294c7a;
+      background: white;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #e8eef7;
+    }
+
+    button:focus-visible {
+      outline: 3px solid #ffdc73;
+      outline-offset: 4px;
+    }
+
+    main {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+
+    main img {
+      display: block;
+      width: min(100%, 411px);
+      height: auto;
+      margin: 1.5rem auto;
+      border-radius: 12px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+  </style>
 </head>
 <body>
+  <section class="pantalla-inicio" id="pantalla-inicio" aria-labelledby="titulo-inicio">
+    <h1 id="titulo-inicio">Ruben-house</h1>
+    <p>Bienvenido a mi página</p>
+    <button type="button" id="boton-inicio">Inicio</button>
+  </section>
+
+  <main id="contenido" hidden>
     <h1>Ruben-house</h1>
     <p>Proyecto de un alumno de 1ºBACH</p>
-      <img width="411" height="448" alt="image" src="https://github.com/user-attachments/assets/2399f6a0-ffcc-421a-9b70-b200dd2897fb">
+    <img
+      width="411"
+      height="448"
+      alt="Imagen del proyecto Ruben-house"
+      src="https://github.com/user-attachments/assets/2399f6a0-ffcc-421a-9b70-b200dd2897fb">
+  </main>
+
+  <script>
+    const botonInicio = document.getElementById('boton-inicio');
+    const pantallaInicio = document.getElementById('pantalla-inicio');
+    const contenido = document.getElementById('contenido');
+
+    botonInicio.addEventListener('click', () => {
+      pantallaInicio.hidden = true;
+      contenido.hidden = false;
+    });
+  </script>
 </body>
 </html>
