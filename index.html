@@ -167,13 +167,23 @@
       text-align: center;
     }
 
-    .imagen-error {
-      display: block;
+    .imagen-error-wrap {
       width: min(100%, 400px);
-      height: auto;
+      height: 260px;
+      overflow: hidden;
       margin: 0.5rem auto 0;
       border-radius: 12px;
       box-shadow: 0 10px 24px rgba(15, 23, 42, 0.18);
+      background: #000;
+    }
+
+    .imagen-error {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+      transform: scale(1.05);
     }
 
     .info-personal {
@@ -240,6 +250,7 @@
       .btn { width: 100%; }
       .acciones { flex-direction: column; }
       .info-personal { padding: 2.5rem 1.2rem; }
+      .imagen-error-wrap { height: 220px; }
     }
   </style>
 </head>
@@ -271,12 +282,14 @@
         <input id="contrasena" type="password" placeholder="Contraseña" autocomplete="off" required>
         <button type="submit" class="btn btn-secondary">Acceder</button>
         <div class="error" id="mensaje-error" aria-live="polite"></div>
-        <img
-          id="imagen-error"
-          class="imagen-error"
-          src="casi-pero-no.png.webp"
-          alt="Casi... pero no"
-          hidden>
+
+        <div class="imagen-error-wrap" id="imagen-error-wrap" hidden>
+          <img
+            id="imagen-error"
+            class="imagen-error"
+            src="casi-pero-no.png.webp"
+            alt="Casi... pero no">
+        </div>
       </form>
     </div>
   </main>
@@ -296,7 +309,7 @@
     const formulario = document.getElementById('formulario-contrasena');
     const campoPassword = document.getElementById('contrasena');
     const mensajeError = document.getElementById('mensaje-error');
-    const imagenError = document.getElementById('imagen-error');
+    const imagenErrorWrap = document.getElementById('imagen-error-wrap');
     const seccionPersonal = document.getElementById('seccion-personal');
 
     document.getElementById('boton-inicio').addEventListener('click', () => {
@@ -314,12 +327,12 @@
 
       if (campoPassword.value === 'ruben') {
         mensajeError.textContent = '';
-        imagenError.hidden = true;
+        imagenErrorWrap.hidden = true;
         contenido.hidden = true;
         seccionPersonal.hidden = false;
       } else {
         mensajeError.textContent = 'Contraseña incorrecta';
-        imagenError.hidden = false;
+        imagenErrorWrap.hidden = false;
         campoPassword.value = '';
         campoPassword.focus();
       }
@@ -327,7 +340,7 @@
 
     campoPassword.addEventListener('input', () => {
       mensajeError.textContent = '';
-      imagenError.hidden = true;
+      imagenErrorWrap.hidden = true;
     });
 
     document.getElementById('boton-atras').addEventListener('click', () => {
@@ -336,7 +349,7 @@
       formulario.hidden = true;
       campoPassword.value = '';
       mensajeError.textContent = '';
-      imagenError.hidden = true;
+      imagenErrorWrap.hidden = true;
       botonInformacion.focus();
     });
   </script>
