@@ -164,6 +164,16 @@
       min-height: 1.2em;
       font-weight: bold;
       margin-top: 0.3rem;
+      text-align: center;
+    }
+
+    .imagen-error {
+      display: block;
+      width: min(100%, 400px);
+      height: auto;
+      margin: 0.5rem auto 0;
+      border-radius: 12px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.18);
     }
 
     .info-personal {
@@ -261,6 +271,11 @@
         <input id="contrasena" type="password" placeholder="Contraseña" autocomplete="off" required>
         <button type="submit" class="btn btn-secondary">Acceder</button>
         <div class="error" id="mensaje-error" aria-live="polite"></div>
+        <img
+          id="imagen-error"
+          class="imagen-error"
+          src="casi-pero-no.png"
+          alt="Casi... pero no">
       </form>
     </div>
   </main>
@@ -280,6 +295,7 @@
     const formulario = document.getElementById('formulario-contrasena');
     const campoPassword = document.getElementById('contrasena');
     const mensajeError = document.getElementById('mensaje-error');
+    const imagenError = document.getElementById('imagen-error');
     const seccionPersonal = document.getElementById('seccion-personal');
 
     document.getElementById('boton-inicio').addEventListener('click', () => {
@@ -297,13 +313,20 @@
 
       if (campoPassword.value === 'ruben') {
         mensajeError.textContent = '';
+        imagenError.hidden = true;
         contenido.hidden = true;
         seccionPersonal.hidden = false;
       } else {
         mensajeError.textContent = 'Contraseña incorrecta';
+        imagenError.hidden = false;
         campoPassword.value = '';
         campoPassword.focus();
       }
+    });
+
+    campoPassword.addEventListener('input', () => {
+      mensajeError.textContent = '';
+      imagenError.hidden = true;
     });
 
     document.getElementById('boton-atras').addEventListener('click', () => {
@@ -312,6 +335,7 @@
       formulario.hidden = true;
       campoPassword.value = '';
       mensajeError.textContent = '';
+      imagenError.hidden = true;
       botonInformacion.focus();
     });
   </script>
