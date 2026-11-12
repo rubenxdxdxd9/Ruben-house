@@ -88,23 +88,25 @@
       animation: montanas-se-mueven 34s linear infinite alternate-reverse;
     }
 
+    /* Suelo más sencillo: pradera al atardecer, con bloques de tierra discretos. */
     .terreno {
       inset: auto 0 0;
-      height: 26vh;
-      min-height: 150px;
-      background: repeating-linear-gradient(90deg,transparent 0 62px,rgba(20,45,50,.22) 62px 64px),
-                  repeating-linear-gradient(0deg,#263d3d 0 34px,#345247 34px 68px,#49664b 68px 102px);
-      background-size: 128px 100%,100% 102px;
-      clip-path: polygon(0 26%,9% 26%,9% 12%,20% 12%,20% 33%,32% 33%,32% 3%,44% 3%,44% 25%,56% 25%,56% 14%,70% 14%,70% 35%,82% 35%,82% 8%,93% 8%,93% 24%,100% 24%,100% 100%,0 100%);
-      animation: terreno-late 12s steps(6,end) infinite alternate;
+      height: 22vh;
+      min-height: 130px;
+      background:
+        repeating-linear-gradient(90deg, transparent 0 78px, rgba(42, 54, 43, .12) 78px 80px),
+        linear-gradient(180deg, #82905a 0 10px, #68764d 10px 22px, #79583f 22px 100%);
+      background-size: 160px 100%, 100% 100%;
+      clip-path: polygon(0 22%, 12% 22%, 12% 13%, 27% 13%, 27% 20%, 43% 20%, 43% 9%, 58% 9%, 58% 18%, 74% 18%, 74% 11%, 88% 11%, 88% 22%, 100% 22%, 100% 100%, 0 100%);
     }
 
     .vegetacion {
       inset: auto 0 0;
-      height: 17vh;
-      min-height: 95px;
-      background: repeating-linear-gradient(90deg,#182f31 0 26px,#27473b 26px 52px,#1d3836 52px 78px);
-      clip-path: polygon(0 30%,12% 30%,12% 10%,24% 10%,24% 28%,37% 28%,37% 0,51% 0,51% 24%,66% 24%,66% 8%,80% 8%,80% 33%,91% 33%,91% 14%,100% 14%,100% 100%,0 100%);
+      height: 7vh;
+      min-height: 34px;
+      background: repeating-linear-gradient(90deg, #344b3b 0 48px, #3e5942 48px 96px);
+      clip-path: polygon(0 26%, 18% 26%, 18% 17%, 35% 17%, 35% 29%, 53% 29%, 53% 14%, 72% 14%, 72% 25%, 88% 25%, 88% 16%, 100% 16%, 100% 100%, 0 100%);
+      opacity: .85;
     }
 
     body > :not(.minecraft-scene) { position: relative; z-index: 1; }
@@ -188,7 +190,6 @@
     @keyframes sol-desciende { from { transform: translateY(-5px); } to { transform: translateY(70px); } }
     @keyframes nubes-viajan { from { translate: 0 0; } to { translate: calc(100vw + 400px) 0; } }
     @keyframes montanas-se-mueven { from { background-position: 0 0,150px 0; } to { background-position: 55px 0,90px 0; } }
-    @keyframes terreno-late { from { background-position: 0 0,0 0; } to { background-position: 24px 0,0 34px; } }
 
     @media (max-width: 700px) {
       .contenido-portada { padding: 2rem 1.2rem; }
@@ -197,8 +198,8 @@
       .proyectos { grid-template-columns: 1fr; padding-bottom: 22vh; }
       .info-personal { padding: 2.5rem 1.2rem; }
       .sol { left: 62%; }
-      .terreno { height: 20vh; }
-      .vegetacion { height: 13vh; }
+      .terreno { height: 18vh; }
+      .vegetacion { height: 6vh; }
     }
 
     @media (prefers-reduced-motion: reduce) {
