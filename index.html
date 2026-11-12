@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ruben-house</title>
+  <title>El escritorio de Rubén</title>
   <style>
     :root {
       --azul-oscuro: #0f172a;
@@ -97,18 +97,43 @@
     .btn-secondary { background: var(--azul-medio); color: var(--blanco); }
 
     main {
-      max-width: 900px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 3rem 1rem 4rem;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .barra-superior {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+    }
+
+    .zona-personal {
+      width: min(100%, 360px);
+      padding: 1rem;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(22,58,95,0.12);
+      border-radius: 18px;
+      box-shadow: 0 8px 22px var(--sombra);
       text-align: center;
     }
 
+    .zona-personal .formulario { margin-top: 1rem; }
+
+    .proyectos {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
     .card {
-      background: rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.85);
       border-radius: 24px;
       box-shadow: 0 12px 30px var(--sombra);
       padding: 2rem 1.5rem;
       border: 1px solid rgba(22,58,95,0.08);
+      text-align: center;
     }
 
     h2 {
@@ -132,12 +157,16 @@
       box-shadow: 0 16px 30px rgba(15, 23, 42, 0.15);
     }
 
-    .acciones {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-top: 2rem;
+    .proyecto-vacio {
+      min-height: 180px;
+      display: grid;
+      place-items: center;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      border: 2px dashed #bfd3eb;
+      border-radius: 18px;
+      color: var(--gris-oscuro);
+      background: #f8fbff;
     }
 
     .formulario {
@@ -169,7 +198,7 @@
 
     .imagen-error-wrap {
       width: min(100%, 400px);
-      height: 260px;
+      height: 220px;
       overflow: hidden;
       margin: 0.5rem auto 0;
       border-radius: 12px;
@@ -245,12 +274,12 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 700px) {
       .contenido-portada { padding: 2rem 1.2rem; }
       .btn { width: 100%; }
-      .acciones { flex-direction: column; }
+      .barra-superior { justify-content: center; }
+      .proyectos { grid-template-columns: 1fr; }
       .info-personal { padding: 2.5rem 1.2rem; }
-      .imagen-error-wrap { height: 220px; }
     }
   </style>
 </head>
@@ -265,33 +294,37 @@
   </section>
 
   <main id="contenido" hidden>
-    <div class="card">
-      <h2>Ruben-house</h2>
-      <p class="subtitulo">Proyecto de un alumno de 1ºBACH</p>
-      <img
-        class="imagen-proyecto"
-        alt="Proyecto Ruben-house"
-        src="https://github.com/user-attachments/assets/2399f6a0-ffcc-421a-9b70-b200dd2897fb">
-
-      <div class="acciones">
-        <button class="btn btn-secondary" type="button" id="boton-informacion">Información personal</button>
-      </div>
-
-      <form class="formulario" id="formulario-contrasena" hidden>
-        <label for="contrasena">Introduce la contraseña:</label>
-        <input id="contrasena" type="password" placeholder="Contraseña" autocomplete="off" required>
-        <button type="submit" class="btn btn-secondary">Acceder</button>
-        <div class="error" id="mensaje-error" aria-live="polite"></div>
-
-        <div class="imagen-error-wrap" id="imagen-error-wrap" hidden>
-          <img
-            id="imagen-error"
-            class="imagen-error"
-            src="casi-pero-no.png.webp"
-            alt="Casi... pero no">
-        </div>
-      </form>
+    <div class="barra-superior">
+      <aside class="zona-personal">
+        <button class="btn btn-secondary" type="button" id="boton-informacion">Página personal</button>
+        <form class="formulario" id="formulario-contrasena" hidden>
+          <label for="contrasena">Introduce la contraseña:</label>
+          <input id="contrasena" type="password" placeholder="Contraseña" autocomplete="off" required>
+          <button type="submit" class="btn btn-secondary">Acceder</button>
+          <div class="error" id="mensaje-error" aria-live="polite"></div>
+          <div class="imagen-error-wrap" id="imagen-error-wrap" hidden>
+            <img id="imagen-error" class="imagen-error" src="casi-pero-no.png.webp" alt="Casi... pero no">
+          </div>
+        </form>
+      </aside>
     </div>
+
+    <section class="proyectos" aria-label="Proyectos">
+      <article class="card">
+        <h2>Proyecto 1</h2>
+        <p class="subtitulo">Ruben-house</p>
+        <img
+          class="imagen-proyecto"
+          alt="Proyecto Ruben-house"
+          src="https://github.com/user-attachments/assets/2399f6a0-ffcc-421a-9b70-b200dd2897fb">
+      </article>
+
+      <article class="card">
+        <h2>Proyecto 2</h2>
+        <p class="subtitulo">Segundo proyecto</p>
+        <div class="proyecto-vacio">Aquí puedes añadir la información o imagen del segundo proyecto.</div>
+      </article>
+    </section>
   </main>
 
   <section id="seccion-personal" class="info-personal" hidden>
