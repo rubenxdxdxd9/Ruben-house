@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>El escritorio de Rubén</title>
+  <title>Escritorio de Rubén</title>
   <style>
     :root {
       --azul-oscuro: #0f172a;
@@ -67,15 +67,6 @@
       letter-spacing: 0.05em;
     }
 
-    .imagen-portada {
-      display: block;
-      width: min(100%, 440px);
-      height: auto;
-      margin: 1.5rem auto;
-      border-radius: 14px;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
-    }
-
     .pantalla-inicio p {
       margin: 1.2rem 0 2rem;
       font-size: clamp(1rem, 2vw, 1.3rem);
@@ -106,79 +97,18 @@
     .btn-secondary { background: var(--azul-medio); color: var(--blanco); }
 
     main {
-      max-width: 1100px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 2rem 1rem 4rem;
-    }
-
-    .barra-superior {
-      display: flex;
-      justify-content: flex-end;
-      align-items: flex-start;
-      margin-bottom: 2rem;
-    }
-
-    .zona-personal {
-      width: min(100%, 360px);
-      padding: 1rem;
-      background: rgba(255,255,255,0.8);
-      border: 1px solid rgba(22,58,95,0.12);
-      border-radius: 18px;
-      box-shadow: 0 8px 22px var(--sombra);
+      padding: 3rem 1rem 4rem;
       text-align: center;
     }
 
-    .zona-personal .formulario { margin-top: 1rem; }
-
-    .proyectos {
-      position: relative;
-      isolation: isolate;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.5rem;
-      padding: 3rem 2rem 8rem;
-      overflow: hidden;
-      border-radius: 28px;
-      background: linear-gradient(180deg, #f7a36f, #f7c37b 48%, #9f6172 100%);
-      background-size: 100% 200%;
-      animation: atardecer-cielo 24s ease-in-out infinite alternate;
-    }
-
-    .proyectos::before {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      inset: 36% 0 0;
-      background:
-        linear-gradient(135deg, transparent 0 30%, #5d526d 30% 52%, transparent 52%) 0 0 / 260px 100% repeat-x,
-        linear-gradient(225deg, transparent 0 34%, #76536b 34% 58%, transparent 58%) 110px 18px / 300px 100% repeat-x,
-        linear-gradient(to top, #34524a 0 30%, transparent 30%) 0 100% / 100% 100% no-repeat,
-        repeating-linear-gradient(90deg, rgba(34, 65, 53, 0.7) 0 32px, transparent 32px 64px) 0 100% / 100% 48px no-repeat;
-      image-rendering: pixelated;
-      animation: paisaje-pixel 18s linear infinite alternate;
-    }
-
-    .proyectos::after {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      width: clamp(70px, 11vw, 130px);
-      aspect-ratio: 1;
-      top: 16%;
-      left: 50%;
-      border-radius: 50%;
-      background: #ffeaa0;
-      box-shadow: 0 0 35px 12px rgba(255, 220, 137, 0.42);
-      animation: sol-poniente 18s ease-in-out infinite alternate;
-    }
-
     .card {
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.8);
       border-radius: 24px;
       box-shadow: 0 12px 30px var(--sombra);
       padding: 2rem 1.5rem;
       border: 1px solid rgba(22,58,95,0.08);
-      text-align: center;
     }
 
     h2 {
@@ -202,16 +132,12 @@
       box-shadow: 0 16px 30px rgba(15, 23, 42, 0.15);
     }
 
-    .proyecto-vacio {
-      min-height: 180px;
-      display: grid;
-      place-items: center;
-      padding: 1.5rem;
-      margin-top: 1.5rem;
-      border: 2px dashed #bfd3eb;
-      border-radius: 18px;
-      color: var(--gris-oscuro);
-      background: #f8fbff;
+    .acciones {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
     }
 
     .formulario {
@@ -243,7 +169,7 @@
 
     .imagen-error-wrap {
       width: min(100%, 400px);
-      height: 220px;
+      height: 260px;
       overflow: hidden;
       margin: 0.5rem auto 0;
       border-radius: 12px;
@@ -319,31 +245,12 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes atardecer-cielo {
-      from { background-position: 0 0; }
-      to { background-position: 0 100%; }
-    }
-
-    @keyframes paisaje-pixel {
-      from { background-position: 0 0, 110px 18px, 0 100%, 0 100%; }
-      to { background-position: 45px 0, 70px 18px, 0 100%, 32px 100%; }
-    }
-
-    @keyframes sol-poniente {
-      from { transform: translate(-50%, 0); opacity: 1; }
-      to { transform: translate(-50%, 90px); opacity: 0.75; }
-    }
-
-    @media (max-width: 700px) {
+    @media (max-width: 600px) {
       .contenido-portada { padding: 2rem 1.2rem; }
       .btn { width: 100%; }
-      .barra-superior { justify-content: center; }
-      .proyectos { grid-template-columns: 1fr; padding: 2rem 1rem 7rem; }
+      .acciones { flex-direction: column; }
       .info-personal { padding: 2.5rem 1.2rem; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .proyectos, .proyectos::before, .proyectos::after { animation: none; }
+      .imagen-error-wrap { height: 220px; }
     }
   </style>
 </head>
@@ -351,45 +258,40 @@
   <section class="pantalla-inicio" id="pantalla-inicio">
     <div class="contenido-portada">
       <div class="badge">Proyecto escolar</div>
-      <h1>El escritorio de Rubén</h1>
-      <img class="imagen-portada" src="OIP.jpg" alt="Ilustración sobre las tecnologías de la información y la comunicación">
+      <h1>Escritorio de Rubén</h1>
       <p>Bienvenido a mi página web personal</p>
       <button class="btn btn-primary" type="button" id="boton-inicio">Entrar</button>
     </div>
   </section>
 
   <main id="contenido" hidden>
-    <div class="barra-superior">
-      <aside class="zona-personal">
-        <button class="btn btn-secondary" type="button" id="boton-informacion">Página personal</button>
-        <form class="formulario" id="formulario-contrasena" hidden>
-          <label for="contrasena">Introduce la contraseña:</label>
-          <input id="contrasena" type="password" placeholder="Contraseña" autocomplete="off" required>
-          <button type="submit" class="btn btn-secondary">Acceder</button>
-          <div class="error" id="mensaje-error" aria-live="polite"></div>
-          <div class="imagen-error-wrap" id="imagen-error-wrap" hidden>
-            <img id="imagen-error" class="imagen-error" src="casi-pero-no.png.webp" alt="Casi... pero no">
-          </div>
-        </form>
-      </aside>
+    <div class="card">
+      <h2>Escritorio de Rubén</h2>
+      <p class="subtitulo">Proyecto de un alumno de 1ºBACH</p>
+      <img
+        class="imagen-proyecto"
+        alt="Proyecto Ruben-house"
+        src="https://github.com/user-attachments/assets/2399f6a0-ffcc-421a-9b70-b200dd2897fb">
+
+      <div class="acciones">
+        <button class="btn btn-secondary" type="button" id="boton-informacion">Información personal</button>
+      </div>
+
+      <form class="formulario" id="formulario-contrasena" hidden>
+        <label for="contrasena">Introduce la contraseña:</label>
+        <input id="contrasena" type="password" placeholder="Contraseña" autocomplete="off" required>
+        <button type="submit" class="btn btn-secondary">Acceder</button>
+        <div class="error" id="mensaje-error" aria-live="polite"></div>
+
+        <div class="imagen-error-wrap" id="imagen-error-wrap" hidden>
+          <img
+            id="imagen-error"
+            class="imagen-error"
+            src="casi-pero-no.png.webp"
+            alt="Casi... pero no">
+        </div>
+      </form>
     </div>
-
-    <section class="proyectos" aria-label="Proyectos">
-      <article class="card">
-        <h2>Proyecto 1</h2>
-        <p class="subtitulo">Ruben-house</p>
-        <img
-          class="imagen-proyecto"
-          alt="Proyecto Ruben-house"
-          src="https://github.com/user-attachments/assets/2399f6a0-ffcc-421a-9b70-b200dd2897fb">
-      </article>
-
-      <article class="card">
-        <h2>Proyecto 2</h2>
-        <p class="subtitulo">Segundo proyecto</p>
-        <div class="proyecto-vacio">Aquí puedes añadir la información o imagen del segundo proyecto.</div>
-      </article>
-    </section>
   </main>
 
   <section id="seccion-personal" class="info-personal" hidden>
