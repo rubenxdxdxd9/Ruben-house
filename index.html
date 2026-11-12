@@ -131,13 +131,49 @@
     .zona-personal .formulario { margin-top: 1rem; }
 
     .proyectos {
+      position: relative;
+      isolation: isolate;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1.5rem;
+      padding: 3rem 2rem 8rem;
+      overflow: hidden;
+      border-radius: 28px;
+      background: linear-gradient(180deg, #f7a36f, #f7c37b 48%, #9f6172 100%);
+      background-size: 100% 200%;
+      animation: atardecer-cielo 24s ease-in-out infinite alternate;
+    }
+
+    .proyectos::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 36% 0 0;
+      background:
+        linear-gradient(135deg, transparent 0 30%, #5d526d 30% 52%, transparent 52%) 0 0 / 260px 100% repeat-x,
+        linear-gradient(225deg, transparent 0 34%, #76536b 34% 58%, transparent 58%) 110px 18px / 300px 100% repeat-x,
+        linear-gradient(to top, #34524a 0 30%, transparent 30%) 0 100% / 100% 100% no-repeat,
+        repeating-linear-gradient(90deg, rgba(34, 65, 53, 0.7) 0 32px, transparent 32px 64px) 0 100% / 100% 48px no-repeat;
+      image-rendering: pixelated;
+      animation: paisaje-pixel 18s linear infinite alternate;
+    }
+
+    .proyectos::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: clamp(70px, 11vw, 130px);
+      aspect-ratio: 1;
+      top: 16%;
+      left: 50%;
+      border-radius: 50%;
+      background: #ffeaa0;
+      box-shadow: 0 0 35px 12px rgba(255, 220, 137, 0.42);
+      animation: sol-poniente 18s ease-in-out infinite alternate;
     }
 
     .card {
-      background: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.9);
       border-radius: 24px;
       box-shadow: 0 12px 30px var(--sombra);
       padding: 2rem 1.5rem;
@@ -283,12 +319,31 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    @keyframes atardecer-cielo {
+      from { background-position: 0 0; }
+      to { background-position: 0 100%; }
+    }
+
+    @keyframes paisaje-pixel {
+      from { background-position: 0 0, 110px 18px, 0 100%, 0 100%; }
+      to { background-position: 45px 0, 70px 18px, 0 100%, 32px 100%; }
+    }
+
+    @keyframes sol-poniente {
+      from { transform: translate(-50%, 0); opacity: 1; }
+      to { transform: translate(-50%, 90px); opacity: 0.75; }
+    }
+
     @media (max-width: 700px) {
       .contenido-portada { padding: 2rem 1.2rem; }
       .btn { width: 100%; }
       .barra-superior { justify-content: center; }
-      .proyectos { grid-template-columns: 1fr; }
+      .proyectos { grid-template-columns: 1fr; padding: 2rem 1rem 7rem; }
       .info-personal { padding: 2.5rem 1.2rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .proyectos, .proyectos::before, .proyectos::after { animation: none; }
     }
   </style>
 </head>
