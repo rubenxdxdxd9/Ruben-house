@@ -10,145 +10,107 @@
       --azul-oscuro: #0f172a;
       --azul-medio: #163a5f;
       --azul-claro: #4f8fc9;
-      --blanco: #ffffff;
+      --blanco: #fff;
       --gris-oscuro: #334155;
-      --rojo: #b91c1c;
-      --sombra: rgba(15, 23, 42, 0.2);
+      --sombra: rgba(15, 23, 42, .2);
     }
 
     * { box-sizing: border-box; }
     html, body { margin: 0; min-height: 100%; font-family: Arial, Helvetica, sans-serif; color: var(--azul-oscuro); }
     body { min-height: 100vh; background: #d98472; }
+    [hidden] { display: none !important; }
 
-    .minecraft-scene {
-      position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
-      background: linear-gradient(180deg, #19345a 0%, #735078 34%, #e17b68 66%, #f5b875 100%);
-      background-size: 100% 160%; animation: cielo-cambia 32s ease-in-out infinite alternate;
-    }
+    /* Fondo de cielo y paisaje en bloques. */
+    .minecraft-scene { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; background: linear-gradient(180deg,#19345a 0%,#735078 34%,#e17b68 66%,#f5b875 100%); background-size: 100% 160%; animation: cielo-cambia 32s ease-in-out infinite alternate; }
     .minecraft-scene > * { position: absolute; }
-    .estrellas {
-      inset: 0; opacity: .65;
-      background-image: radial-gradient(circle, #fff4cf 1.2px, transparent 2px), radial-gradient(circle, #fff 1.2px, transparent 2px);
-      background-size: 97px 83px, 151px 127px; background-position: 12px 17px, 55px 42px;
-      animation: estrellas-brillan 5s ease-in-out infinite alternate;
-    }
-    .sol {
-      width: clamp(90px, 14vw, 170px); aspect-ratio: 1; top: 16%; left: 68%; background: #ffd88c;
-      box-shadow: 0 0 35px 12px rgba(255,190,123,.35);
-      clip-path: polygon(15% 0,85% 0,85% 10%,100% 10%,100% 85%,90% 85%,90% 100%,10% 100%,10% 90%,0 90%,0 15%,15% 15%);
-      animation: sol-desciende 28s ease-in-out infinite alternate;
-    }
+    .estrellas { inset: 0; opacity: .65; background-image: radial-gradient(circle,#fff4cf 1.2px,transparent 2px),radial-gradient(circle,#fff 1.2px,transparent 2px); background-size: 97px 83px,151px 127px; background-position: 12px 17px,55px 42px; animation: estrellas-brillan 5s ease-in-out infinite alternate; }
+    .sol { width: clamp(90px,14vw,170px); aspect-ratio: 1; top: 16%; left: 68%; background: #ffd88c; box-shadow: 0 0 35px 12px rgba(255,190,123,.35); clip-path: polygon(15% 0,85% 0,85% 10%,100% 10%,100% 85%,90% 85%,90% 100%,10% 100%,10% 90%,0 90%,0 15%,15% 15%); animation: sol-desciende 28s ease-in-out infinite alternate; }
     .nube { width: 120px; height: 22px; background: rgba(255,218,198,.42); box-shadow: 24px -15px 0 -2px rgba(255,218,198,.42),52px 0 rgba(255,218,198,.42),78px -10px 0 -3px rgba(255,218,198,.42); animation: nubes-viajan linear infinite; }
     .nube-una { top: 18%; left: -180px; animation-duration: 55s; }
     .nube-dos { top: 31%; left: -220px; transform: scale(.7); opacity: .65; animation-duration: 78s; animation-delay: -28s; }
     .nube-tres { top: 10%; left: -200px; transform: scale(.5); opacity: .5; animation-duration: 92s; animation-delay: -46s; }
-    .montanas-lejanas {
-      inset: 38% -5% 0; opacity: .82;
-      background: linear-gradient(135deg,transparent 0 39%,#5b506b 39% 61%,transparent 61%) 0 0/310px 100% repeat-x,
-                  linear-gradient(225deg,transparent 0 39%,#66506b 39% 61%,transparent 61%) 150px 0/360px 100% repeat-x;
-      animation: montanas-se-mueven 45s linear infinite alternate;
-    }
-    .montanas-cercanas {
-      inset: 53% -5% 0;
-      background: linear-gradient(135deg,transparent 0 36%,#443f59 36% 63%,transparent 63%) 40px 0/390px 100% repeat-x,
-                  linear-gradient(225deg,transparent 0 35%,#51435b 35% 64%,transparent 64%) 210px 15px/430px 100% repeat-x;
-      animation: montanas-se-mueven 34s linear infinite alternate-reverse;
-    }
-    .terreno {
-      inset: auto 0 0; height: 22vh; min-height: 130px;
-      background: repeating-linear-gradient(90deg,transparent 0 78px,rgba(42,54,43,.1) 78px 80px),linear-gradient(180deg,#91a95d 0%,#78964d 18%,#6f8b49 100%);
-      background-size: 160px 100%,100% 100%;
-      clip-path: polygon(0 22%,12% 22%,12% 13%,27% 13%,27% 20%,43% 20%,43% 9%,58% 9%,58% 18%,74% 18%,74% 11%,88% 11%,88% 22%,100% 22%,100% 100%,0 100%);
-    }
-    .vegetacion { display: none; }
-    body > :not(.minecraft-scene) { position: relative; z-index: 1; }
+    .montanas-lejanas { inset: 38% -5% 0; opacity: .82; background: linear-gradient(135deg,transparent 0 39%,#5b506b 39% 61%,transparent 61%) 0 0/310px 100% repeat-x,linear-gradient(225deg,transparent 0 39%,#66506b 39% 61%,transparent 61%) 150px 0/360px 100% repeat-x; animation: montanas-se-mueven 45s linear infinite alternate; }
+    .montanas-cercanas { inset: 53% -5% 0; background: linear-gradient(135deg,transparent 0 36%,#443f59 36% 63%,transparent 63%) 40px 0/390px 100% repeat-x,linear-gradient(225deg,transparent 0 35%,#51435b 35% 64%,transparent 64%) 210px 15px/430px 100% repeat-x; animation: montanas-se-mueven 34s linear infinite alternate-reverse; }
+    .terreno { inset: auto 0 0; height: 22vh; min-height: 130px; background: repeating-linear-gradient(90deg,transparent 0 78px,rgba(42,54,43,.1) 78px 80px),linear-gradient(180deg,#91a95d 0%,#78964d 18%,#6f8b49 100%); background-size: 160px 100%,100% 100%; clip-path: polygon(0 22%,12% 22%,12% 13%,27% 13%,27% 20%,43% 20%,43% 9%,58% 9%,58% 18%,74% 18%,74% 11%,88% 11%,88% 22%,100% 22%,100% 100%,0 100%); }
 
-    .pantalla-inicio { min-height: 100vh; display: grid; place-items: center; text-align: center; padding: 2rem; color: var(--blanco); background: transparent; }
+    body > :not(.minecraft-scene) { position: relative; z-index: 1; }
+    .pantalla-inicio { min-height: 100vh; display: grid; place-items: center; padding: 2rem; text-align: center; color: var(--blanco); }
     .contenido-portada { width: min(100%,700px); padding: 2.5rem 2rem; border: 1px solid rgba(255,255,255,.2); border-radius: 24px; background: rgba(20,35,57,.48); box-shadow: 0 16px 40px rgba(0,0,0,.25); backdrop-filter: blur(7px); }
-    .badge { display: inline-block; padding: .4rem .8rem; border: 1px solid rgba(255,255,255,.25); border-radius: 999px; background: rgba(255,255,255,.12); font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 1rem; }
-    .pantalla-inicio h1 { margin: 0; font-size: clamp(2.5rem,7vw,5rem); line-height: 1.1; letter-spacing: .04em; }
-    .pantalla-inicio p { margin: 1.2rem 0 2rem; font-size: clamp(1rem,2vw,1.3rem); color: rgba(255,255,255,.9); }
-    .btn { border: 0; border-radius: 999px; padding: 1rem 2rem; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease; }
-    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,0,0,.18); }
-    .btn:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid #ffdc73; outline-offset: 4px; }
+    .badge { display: inline-block; margin-bottom: 1rem; padding: .4rem .8rem; border: 1px solid rgba(255,255,255,.25); border-radius: 999px; background: rgba(255,255,255,.12); font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; }
+    h1 { margin: 0; font-size: clamp(2.4rem,7vw,4.5rem); line-height: 1.1; }
+    .contenido-portada p { margin: 1.2rem 0 2rem; font-size: clamp(1rem,2vw,1.3rem); color: rgba(255,255,255,.92); }
+    .btn { border: 0; border-radius: 999px; padding: .9rem 1.6rem; font-size: 1rem; font-weight: 700; cursor: pointer; transition: transform .2s ease,box-shadow .2s ease,background .2s ease; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,0,0,.2); }
+    .btn:focus-visible { outline: 3px solid #ffdc73; outline-offset: 4px; }
     .btn-primary { background: var(--blanco); color: var(--azul-medio); }
     .btn-secondary { background: var(--azul-medio); color: var(--blanco); }
 
-    main, .pagina-juegos { max-width: 1100px; min-height: 100vh; margin: 0 auto; padding: 2rem 1rem 4rem; }
-    .barra-superior { display: flex; justify-content: flex-end; align-items: flex-start; margin-bottom: 1rem; }
-    .zona-personal { position: fixed; z-index: 5; top: 2rem; right: clamp(1rem,4vw,4rem); width: min(320px,calc(100vw - 2rem)); padding: 0; background: transparent; border: 0; box-shadow: none; text-align: right; }
-    .accesos-flotantes { display: flex; flex-direction: column; align-items: flex-end; gap: .75rem; }
-    .avatar-boton-wrap, .juegos-boton-wrap { position: relative; display: inline-block; }
-    .btn-avatar { display: inline-flex; align-items: center; justify-content: center; width: 96px; height: 96px; padding: 0; overflow: hidden; border: 4px solid rgba(255,255,255,.75); border-radius: 50%; background: var(--blanco); box-shadow: 0 8px 20px rgba(15,23,42,.25); }
-    .btn-avatar img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
-    .avatar-boton-wrap::after, .juegos-boton-wrap::after { content: attr(data-tooltip); position: absolute; top: calc(100% + 10px); right: 0; padding: .55rem .8rem; border-radius: 8px; background: var(--azul-oscuro); color: var(--blanco); font-size: .9rem; font-weight: bold; white-space: nowrap; opacity: 0; visibility: hidden; transform: translateY(-4px); transition: opacity .18s ease,transform .18s ease,visibility .18s ease; pointer-events: none; }
-    .avatar-boton-wrap:hover::after, .avatar-boton-wrap:focus-within::after, .juegos-boton-wrap:hover::after, .juegos-boton-wrap:focus-within::after { opacity: 1; visibility: visible; transform: translateY(0); }
-    .avatar-boton-wrap::after { top: 50%; right: calc(100% + 12px); transform: translate(4px,-50%); }
-    .avatar-boton-wrap:hover::after, .avatar-boton-wrap:focus-within::after { transform: translate(0,-50%); }
-    .btn-juegos { display: inline-flex; align-items: center; justify-content: center; width: 96px; height: 72px; padding: .75rem; border: 3px solid rgba(255,255,255,.75); border-radius: 18px; background: rgba(255,255,255,.95); box-shadow: 0 8px 20px rgba(15,23,42,.25); }
-    .btn-juegos svg { width: 100%; height: 100%; display: block; }
-    .zona-personal .formulario { position: absolute; top: 108px; right: 0; z-index: 2; width: 100%; margin: 0; padding: 1rem; border: 1px solid rgba(22,58,95,.12); border-radius: 18px; background: rgba(255,255,255,.96); box-shadow: 0 8px 22px var(--sombra); text-align: left; }
-    .formulario { display: grid; gap: .8rem; }
-    .formulario label { font-weight: bold; color: var(--azul-oscuro); }
-    .formulario input { width: 100%; padding: .9rem 1rem; border: 1px solid #bfd3eb; border-radius: 12px; font-size: 1rem; background: #fff; }
-    .error { color: var(--rojo); min-height: 1.2em; font-weight: bold; margin-top: .3rem; text-align: center; }
-    .imagen-error-wrap { width: min(100%,400px); height: 220px; overflow: hidden; margin: .5rem auto 0; border-radius: 12px; box-shadow: 0 10px 24px rgba(15,23,42,.18); background: #000; }
-    .imagen-error { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 18%; transform: scale(1.05); }
+    main { min-height: 100vh; padding: 2rem 1.25rem 5rem; }
+    .vista { width: min(100%,1100px); min-height: calc(100vh - 7rem); margin: 0 auto; }
+    .tablero { display: grid; align-content: center; justify-items: center; }
+    .tablero h1, .vista-interior > h1 { margin: 0 0 .75rem; color: var(--blanco); text-align: center; text-shadow: 0 3px 14px rgba(15,23,42,.35); }
+    .intro-tablero { margin: 0 0 2rem; color: rgba(255,255,255,.95); text-align: center; font-size: 1.15rem; }
+    .menu-principal { width: min(100%,980px); display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1.4rem; }
+    .boton-seccion { min-height: 230px; padding: 1.6rem; display: grid; align-content: center; justify-items: center; gap: .75rem; color: var(--azul-oscuro); text-align: center; border: 1px solid rgba(255,255,255,.72); border-radius: 26px; background: rgba(255,255,255,.91); box-shadow: 0 16px 35px rgba(15,23,42,.25); backdrop-filter: blur(6px); cursor: pointer; transition: transform .2s ease,background .2s ease,box-shadow .2s ease; }
+    .boton-seccion:hover { transform: translateY(-8px); background: #fff; box-shadow: 0 22px 40px rgba(15,23,42,.32); }
+    .numero-seccion { display: grid; place-items: center; width: 70px; height: 70px; border-radius: 50%; color: var(--blanco); background: linear-gradient(135deg,var(--azul-medio),var(--azul-claro)); font-size: 2rem; font-weight: 800; box-shadow: 0 8px 18px rgba(22,58,95,.24); }
+    .boton-seccion strong { font-size: clamp(1.3rem,2.2vw,1.75rem); }
+    .boton-seccion small { color: var(--gris-oscuro); font-size: .95rem; }
 
-    .proyectos { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.5rem; padding: 1rem 0 25vh; }
-    .card { background: rgba(255,255,255,.93); border-radius: 24px; box-shadow: 0 12px 30px var(--sombra); padding: 2rem 1.5rem; border: 1px solid rgba(22,58,95,.08); text-align: center; }
-    h2 { margin: 0; font-size: clamp(1.8rem,3vw,2.8rem); color: var(--azul-oscuro); }
-    .subtitulo { font-size: 1.1rem; color: var(--gris-oscuro); margin: .8rem 0 1.5rem; }
-    .proyecto-vacio { min-height: 180px; display: grid; place-items: center; padding: 1.5rem; margin-top: 1.5rem; border: 2px dashed #bfd3eb; border-radius: 18px; color: var(--gris-oscuro); background: rgba(255,255,255,.55); }
+    .barra-navegacion { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+    .boton-volver { width: 54px; height: 54px; padding: 0; border: 2px solid rgba(255,255,255,.75); border-radius: 50%; color: var(--azul-medio); background: rgba(255,255,255,.94); font-size: 1.8rem; line-height: 1; box-shadow: 0 8px 20px rgba(15,23,42,.22); cursor: pointer; }
+    .boton-volver:hover { transform: translateX(-3px); }
+    .marca-seccion { color: var(--blanco); font-size: .95rem; font-weight: 700; }
+    .vista-interior > h1 { margin: 2rem 0 1.5rem; font-size: clamp(2rem,5vw,3.4rem); }
+    .panel { padding: clamp(1.5rem,4vw,2.5rem); border: 1px solid rgba(255,255,255,.65); border-radius: 24px; background: rgba(255,255,255,.94); box-shadow: 0 14px 32px var(--sombra); }
+    .sobre-mi { max-width: 700px; margin: 0 auto; text-align: center; }
+    .avatar-perfil { width: 112px; height: 112px; margin: 0 auto 1.25rem; object-fit: cover; border: 4px solid #fff; border-radius: 50%; box-shadow: 0 8px 22px rgba(15,23,42,.2); }
+    .sobre-mi h2 { margin: 0 0 .5rem; font-size: clamp(1.6rem,4vw,2.3rem); }
+    .sobre-mi .curso { display: inline-block; margin: .4rem 0 1rem; padding: .5rem .9rem; border-radius: 999px; color: var(--azul-medio); background: #edf5fd; font-weight: 700; }
+    .sobre-mi p { line-height: 1.65; }
+    .proyectos { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.5rem; }
+    .proyecto-card { min-height: 270px; padding: 2rem 1.5rem; border: 1px solid rgba(255,255,255,.7); border-radius: 24px; background: rgba(255,255,255,.94); box-shadow: 0 12px 30px var(--sombra); text-align: center; }
+    .proyecto-card h2 { margin: 0; font-size: clamp(1.6rem,3vw,2.2rem); }
+    .subtitulo { margin: .7rem 0 1rem; color: var(--gris-oscuro); font-size: 1.1rem; }
+    .proyecto-vacio { min-height: 130px; display: grid; place-items: center; padding: 1.3rem; border: 2px dashed #bfd3eb; border-radius: 18px; color: var(--gris-oscuro); background: rgba(237,245,253,.5); }
+    .otros-lista { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; }
+    .otro-item { min-height: 160px; display: grid; align-content: center; justify-items: center; gap: .6rem; padding: 1.25rem; border: 1px solid rgba(255,255,255,.7); border-radius: 20px; background: rgba(255,255,255,.94); box-shadow: 0 10px 24px var(--sombra); text-align: center; }
+    .otro-item strong { font-size: 1.25rem; }
+    .otro-item span { color: var(--gris-oscuro); }
 
-    .boton-volver-pagina { position: fixed; z-index: 6; top: 2rem; left: clamp(1rem,4vw,4rem); display: inline-grid; place-items: center; width: 64px; height: 64px; padding: 0; border: 3px solid rgba(255,255,255,.75); border-radius: 50%; background: rgba(255,255,255,.95); color: var(--azul-medio); font-size: 2rem; line-height: 1; box-shadow: 0 8px 20px rgba(15,23,42,.25); cursor: pointer; }
-    .boton-volver-pagina:hover { transform: translateX(-3px); }
-    .pagina-juegos { text-align: center; }
-    .pagina-juegos h1 { margin: 5rem 0 .75rem; color: var(--blanco); font-size: clamp(2.2rem,6vw,4rem); text-shadow: 0 3px 12px rgba(15,23,42,.3); }
-    .pagina-juegos > p { margin: 0 0 2rem; color: var(--blanco); font-size: 1.1rem; }
-    .selector-juegos { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1.5rem; }
-    .juego-opcion { min-height: 240px; display: grid; align-content: center; justify-items: center; gap: .8rem; padding: 1.5rem; border: 1px solid rgba(255,255,255,.7); border-radius: 24px; background: rgba(255,255,255,.93); box-shadow: 0 12px 30px var(--sombra); }
-    .juego-opcion .numero-juego { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: #edf5fd; color: var(--azul-medio); font-size: 1.8rem; font-weight: bold; }
-    .juego-opcion h2 { font-size: 1.5rem; }
-    .juego-opcion p { margin: 0; color: var(--gris-oscuro); }
+    .avatar-flotante { position: fixed; z-index: 5; top: 1.25rem; right: 1.5rem; width: 76px; height: 76px; padding: 0; border: 4px solid rgba(255,255,255,.9); border-radius: 50%; overflow: hidden; background: #fff; box-shadow: 0 8px 20px rgba(15,23,42,.25); cursor: pointer; }
+    .avatar-flotante img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .avatar-flotante::after { content: "Ir a Sobre mí"; position: absolute; top: 50%; right: calc(100% + 10px); transform: translate(4px,-50%); padding: .55rem .75rem; border-radius: 8px; background: var(--azul-oscuro); color: #fff; font-size: .85rem; font-weight: 700; white-space: nowrap; opacity: 0; visibility: hidden; transition: opacity .18s ease,transform .18s ease,visibility .18s ease; pointer-events: none; }
+    .avatar-flotante:hover::after, .avatar-flotante:focus-visible::after { opacity: 1; visibility: visible; transform: translate(0,-50%); }
 
-    .info-personal { width: min(90%,620px); margin: 4rem auto; padding: 3rem 2rem; text-align: center; background: rgba(255,255,255,.95); border: 1px solid #d9e7f9; border-radius: 28px; box-shadow: 0 20px 40px rgba(15,23,42,.12); }
-    .avatar { width: 100px; height: 100px; display: grid; place-items: center; margin: 0 auto 1.5rem; border-radius: 50%; color: var(--blanco); background: linear-gradient(135deg,var(--azul-medio),var(--azul-claro)); box-shadow: 0 8px 20px rgba(22,58,95,.25); font-weight: bold; font-size: 2rem; }
-    .info-personal .etiqueta { margin: 0 0 .6rem; color: var(--azul-claro); font-size: .85rem; font-weight: bold; letter-spacing: .12em; text-transform: uppercase; }
-    .info-personal h2 { margin: 0 0 .7rem; font-size: clamp(1.8rem,4vw,2.5rem); }
-    .info-personal .curso { display: inline-block; margin: 0 0 2rem; padding: .55rem 1rem; border-radius: 999px; color: var(--azul-medio); background: #edf5fd; font-size: 1.05rem; font-weight: bold; }
-    [hidden] { display: none !important; }
-
+    @media (max-width: 760px) {
+      .menu-principal { grid-template-columns: 1fr; max-width: 460px; }
+      .boton-seccion { min-height: 155px; }
+      .numero-seccion { width: 58px; height: 58px; font-size: 1.7rem; }
+      .proyectos { grid-template-columns: 1fr; }
+      .otros-lista { grid-template-columns: 1fr; max-width: 460px; }
+      .otro-item { min-height: 125px; }
+      .avatar-flotante { top: .8rem; right: .8rem; width: 60px; height: 60px; }
+      .tablero h1 { max-width: 70%; font-size: clamp(2rem,8vw,3.2rem); }
+    }
+    @media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
     @keyframes cielo-cambia { from { background-position: 0 0; } to { background-position: 0 100%; } }
     @keyframes estrellas-brillan { from { opacity: .25; } to { opacity: .8; } }
     @keyframes sol-desciende { from { transform: translateY(-5px); } to { transform: translateY(70px); } }
     @keyframes nubes-viajan { from { translate: 0 0; } to { translate: calc(100vw + 400px) 0; } }
     @keyframes montanas-se-mueven { from { background-position: 0 0,150px 0; } to { background-position: 55px 0,90px 0; } }
-
-    @media (max-width: 700px) {
-      .contenido-portada { padding: 2rem 1.2rem; }
-      .zona-personal { top: 1rem; right: 1rem; width: min(300px,calc(100vw - 2rem)); }
-      .btn-avatar { width: 80px; height: 80px; }
-      .btn-juegos { width: 80px; height: 62px; }
-      .zona-personal .formulario { top: 92px; }
-      .boton-volver-pagina { top: 1rem; left: 1rem; width: 56px; height: 56px; }
-      .proyectos, .selector-juegos { grid-template-columns: 1fr; }
-      .proyectos { padding-bottom: 22vh; }
-      .pagina-juegos h1 { margin-top: 5rem; }
-      .juego-opcion { min-height: 180px; }
-      .info-personal { padding: 2.5rem 1.2rem; }
-      .sol { left: 62%; }
-      .terreno { height: 18vh; }
-    }
-    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
   </style>
 </head>
 <body>
   <div class="minecraft-scene" aria-hidden="true">
     <div class="estrellas"></div><div class="sol"></div>
     <div class="nube nube-una"></div><div class="nube nube-dos"></div><div class="nube nube-tres"></div>
-    <div class="montanas-lejanas"></div><div class="montanas-cercanas"></div><div class="terreno"></div><div class="vegetacion"></div>
+    <div class="montanas-lejanas"></div><div class="montanas-cercanas"></div><div class="terreno"></div>
   </div>
+
+  <button class="avatar-flotante" id="boton-avatar" type="button" aria-label="Ir a Sobre mí" title="Ir a Sobre mí" hidden>
+    <img src="avatar.png.jpg" alt="">
+  </button>
 
   <section class="pantalla-inicio" id="pantalla-inicio">
     <div class="contenido-portada">
@@ -159,147 +121,92 @@
     </div>
   </section>
 
-  <button class="boton-volver-pagina" id="boton-volver-pagina" type="button" aria-label="Volver a la página anterior" title="Volver a la página anterior" hidden>←</button>
-
   <main id="contenido" hidden>
-    <div class="barra-superior">
-      <aside class="zona-personal">
-        <div class="accesos-flotantes">
-          <div class="avatar-boton-wrap" data-tooltip="Ir a la página personal">
-            <button class="btn btn-avatar" type="button" id="boton-informacion" aria-label="Ir a la página personal" aria-expanded="false" aria-controls="formulario-contrasena" title="Ir a la página personal"><img src="avatar.png.jpg" alt=""></button>
-          </div>
-          <div class="juegos-boton-wrap" data-tooltip="Ir a los juegos">
-            <button class="btn-juegos" type="button" id="boton-juegos" aria-label="Ir a los juegos" title="Ir a los juegos">
-              <svg viewBox="0 0 160 100" role="img" aria-label="Mando de videojuegos" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#171717" d="M38 17h84c12 0 21 8 25 20l11 43c3 12-10 20-20 12l-22-19H44L22 92C12 100-1 92 2 80l11-43c4-12 13-20 25-20Z"/>
-                <path fill="#fff" d="M38 37h30v9H38zM48.5 26.5h9v30h-9z"/>
-                <circle cx="108" cy="39" r="7" fill="#fff"/><circle cx="126" cy="53" r="7" fill="#fff"/><circle cx="108" cy="66" r="7" fill="#fff"/><circle cx="91" cy="53" r="7" fill="#fff"/>
-                <circle cx="79" cy="37" r="4" fill="#fff"/><circle cx="89" cy="37" r="4" fill="#fff"/><circle cx="79" cy="49" r="4" fill="#fff"/><circle cx="89" cy="49" r="4" fill="#fff"/>
-                <rect x="65" y="58" width="13" height="5" rx="2.5" fill="#fff"/><rect x="82" y="58" width="13" height="5" rx="2.5" fill="#fff"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-        <form class="formulario zona-formulario" id="formulario-contrasena" hidden>
-          <label for="contrasena">Introduce la contraseña:</label>
-          <input id="contrasena" type="password" placeholder="Contraseña" autocomplete="off" required>
-          <button type="submit" class="btn btn-secondary">Acceder</button>
-          <div class="error" id="mensaje-error" aria-live="polite"></div>
-          <div class="imagen-error-wrap" id="imagen-error-wrap" hidden><img class="imagen-error" src="casi-pero-no.png.webp" alt="Casi... pero no"></div>
-        </form>
-      </aside>
-    </div>
+    <section class="vista tablero" id="vista-inicio" aria-labelledby="titulo-menu">
+      <h1 id="titulo-menu">Elige una sección</h1>
+      <p class="intro-tablero">Explora mi página personal y mis proyectos</p>
+      <nav class="menu-principal" aria-label="Secciones principales">
+        <button class="boton-seccion" type="button" data-vista="sobre-mi"><span class="numero-seccion">1</span><strong>Sobre mí</strong><small>Conoce un poco sobre mí</small></button>
+        <button class="boton-seccion" type="button" data-vista="proyectos"><span class="numero-seccion">2</span><strong>Proyectos</strong><small>Lo que he creado</small></button>
+        <button class="boton-seccion" type="button" data-vista="otros"><span class="numero-seccion">3</span><strong>Otros</strong><small>Más cosas y juegos</small></button>
+      </nav>
+    </section>
 
-    <section class="proyectos" aria-label="Proyectos">
-      <article class="card"><h2>Proyecto 1</h2><p class="subtitulo">Ruben-house</p><div class="proyecto-vacio">La imagen de este proyecto estará disponible próximamente.</div></article>
-      <article class="card"><h2>Proyecto 2</h2><p class="subtitulo">Segundo proyecto</p><div class="proyecto-vacio">Aquí puedes añadir la información o imagen del segundo proyecto.</div></article>
+    <section class="vista vista-interior" id="vista-sobre-mi" aria-labelledby="titulo-sobre-mi" hidden>
+      <div class="barra-navegacion"><button class="boton-volver" type="button" aria-label="Volver al menú">←</button><span class="marca-seccion">1 · Sobre mí</span></div>
+      <h1 id="titulo-sobre-mi">Sobre mí</h1>
+      <div class="panel sobre-mi">
+        <img class="avatar-perfil" src="avatar.png.jpg" alt="Ilustración de perfil de Rubén">
+        <h2>Rubén Andrés Arnaz</h2>
+        <p class="curso">1º Bachillerato</p>
+        <p>¡Bienvenido a mi página! Aquí iré compartiendo información sobre mí y las cosas que voy creando.</p>
+      </div>
+    </section>
+
+    <section class="vista vista-interior" id="vista-proyectos" aria-labelledby="titulo-proyectos" hidden>
+      <div class="barra-navegacion"><button class="boton-volver" type="button" aria-label="Volver al menú">←</button><span class="marca-seccion">2 · Proyectos</span></div>
+      <h1 id="titulo-proyectos">Mis proyectos</h1>
+      <div class="proyectos">
+        <article class="proyecto-card"><h2>Proyecto 1</h2><p class="subtitulo">Ruben-house</p><div class="proyecto-vacio">La imagen y la información de este proyecto estarán disponibles próximamente.</div></article>
+        <article class="proyecto-card"><h2>Proyecto 2</h2><p class="subtitulo">Segundo proyecto</p><div class="proyecto-vacio">Aquí puedes añadir la información o imagen del segundo proyecto.</div></article>
+      </div>
+    </section>
+
+    <section class="vista vista-interior" id="vista-otros" aria-labelledby="titulo-otros" hidden>
+      <div class="barra-navegacion"><button class="boton-volver" type="button" aria-label="Volver al menú">←</button><span class="marca-seccion">3 · Otros</span></div>
+      <h1 id="titulo-otros">Otros</h1>
+      <div class="otros-lista" aria-label="Juegos">
+        <article class="otro-item"><strong>Juego 1</strong><span>Próximamente</span></article>
+        <article class="otro-item"><strong>Juego 2</strong><span>Próximamente</span></article>
+        <article class="otro-item"><strong>Juego 3</strong><span>Próximamente</span></article>
+      </div>
     </section>
   </main>
-
-  <section class="pagina-juegos" id="pagina-juegos" aria-labelledby="titulo-juegos" hidden>
-    <h1 id="titulo-juegos">Selector de juegos</h1>
-    <p>Elige un juego. ¡Próximamente estarán disponibles!</p>
-    <div class="selector-juegos">
-      <article class="juego-opcion"><span class="numero-juego">1</span><h2>Juego 1</h2><p>Próximamente</p></article>
-      <article class="juego-opcion"><span class="numero-juego">2</span><h2>Juego 2</h2><p>Próximamente</p></article>
-      <article class="juego-opcion"><span class="numero-juego">3</span><h2>Juego 3</h2><p>Próximamente</p></article>
-    </div>
-  </section>
-
-  <section id="seccion-personal" class="info-personal" hidden>
-    <div class="avatar" aria-hidden="true">RA</div><p class="etiqueta">Información personal</p><h2>Rubén Andrés Arnaz</h2><p class="curso">1ºBach</p>
-    <button class="btn btn-secondary" type="button" id="boton-atras">← Volver atrás</button>
-  </section>
 
   <script>
     const pantallaInicio = document.getElementById('pantalla-inicio');
     const contenido = document.getElementById('contenido');
-    const paginaJuegos = document.getElementById('pagina-juegos');
-    const botonVolverPagina = document.getElementById('boton-volver-pagina');
-    const botonInformacion = document.getElementById('boton-informacion');
-    const botonJuegos = document.getElementById('boton-juegos');
-    const formulario = document.getElementById('formulario-contrasena');
-    const campoPassword = document.getElementById('contrasena');
-    const mensajeError = document.getElementById('mensaje-error');
-    const imagenErrorWrap = document.getElementById('imagen-error-wrap');
-    const seccionPersonal = document.getElementById('seccion-personal');
+    const botonAvatar = document.getElementById('boton-avatar');
+    const vistas = {
+      inicio: document.getElementById('vista-inicio'),
+      'sobre-mi': document.getElementById('vista-sobre-mi'),
+      proyectos: document.getElementById('vista-proyectos'),
+      otros: document.getElementById('vista-otros')
+    };
+
+    function mostrarVista(nombre) {
+      Object.entries(vistas).forEach(([clave, elemento]) => {
+        elemento.hidden = clave !== nombre;
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
     document.getElementById('boton-inicio').addEventListener('click', () => {
       pantallaInicio.hidden = true;
       contenido.hidden = false;
-      botonVolverPagina.hidden = false;
+      botonAvatar.hidden = false;
+      mostrarVista('inicio');
+      document.querySelector('#vista-inicio .boton-seccion').focus();
     });
 
-    botonJuegos.addEventListener('click', () => {
-      contenido.hidden = true;
-      paginaJuegos.hidden = false;
-      formulario.hidden = true;
-      botonInformacion.setAttribute('aria-expanded', 'false');
-      botonVolverPagina.hidden = false;
-      botonVolverPagina.focus();
+    document.querySelectorAll('.boton-seccion').forEach((boton) => {
+      boton.addEventListener('click', () => {
+        const destino = boton.dataset.vista;
+        mostrarVista(destino);
+        document.getElementById(`titulo-${destino === 'sobre-mi' ? 'sobre-mi' : destino}`).focus?.();
+      });
     });
 
-    botonVolverPagina.addEventListener('click', () => {
-      if (!paginaJuegos.hidden) {
-        paginaJuegos.hidden = true;
-        contenido.hidden = false;
-        botonJuegos.focus();
-      } else if (!seccionPersonal.hidden) {
-        seccionPersonal.hidden = true;
-        contenido.hidden = false;
-      } else {
-        contenido.hidden = true;
-        paginaJuegos.hidden = true;
-        pantallaInicio.hidden = false;
-        botonVolverPagina.hidden = true;
-        document.getElementById('boton-inicio').focus();
-      }
+    document.querySelectorAll('.boton-volver').forEach((boton) => {
+      boton.addEventListener('click', () => {
+        mostrarVista('inicio');
+        document.querySelector('#vista-inicio .boton-seccion').focus();
+      });
     });
 
-    botonInformacion.addEventListener('click', () => {
-      const abrirFormulario = formulario.hidden;
-      formulario.hidden = !abrirFormulario;
-      botonInformacion.setAttribute('aria-expanded', String(abrirFormulario));
-      if (abrirFormulario) {
-        campoPassword.focus();
-      } else {
-        campoPassword.value = '';
-        mensajeError.textContent = '';
-        imagenErrorWrap.hidden = true;
-      }
-    });
-
-    formulario.addEventListener('submit', (event) => {
-      event.preventDefault();
-      if (campoPassword.value === 'ruben') {
-        mensajeError.textContent = '';
-        imagenErrorWrap.hidden = true;
-        formulario.hidden = true;
-        contenido.hidden = true;
-        seccionPersonal.hidden = false;
-        botonInformacion.setAttribute('aria-expanded', 'false');
-      } else {
-        mensajeError.textContent = 'Contraseña incorrecta';
-        imagenErrorWrap.hidden = false;
-        campoPassword.value = '';
-        campoPassword.focus();
-      }
-    });
-
-    campoPassword.addEventListener('input', () => {
-      mensajeError.textContent = '';
-      imagenErrorWrap.hidden = true;
-    });
-
-    document.getElementById('boton-atras').addEventListener('click', () => {
-      seccionPersonal.hidden = true;
-      contenido.hidden = false;
-      formulario.hidden = true;
-      botonInformacion.setAttribute('aria-expanded', 'false');
-      campoPassword.value = '';
-      mensajeError.textContent = '';
-      imagenErrorWrap.hidden = true;
-      botonInformacion.focus();
+    botonAvatar.addEventListener('click', () => {
+      mostrarVista('sobre-mi');
+      document.getElementById('titulo-sobre-mi').focus?.();
     });
   </script>
 </body>
