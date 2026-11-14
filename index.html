@@ -149,7 +149,7 @@
       transition: transform .2s ease, box-shadow .2s ease;
     }
     .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,0,0,.18); }
-    .btn:focus-visible, input:focus-visible { outline: 3px solid #ffdc73; outline-offset: 4px; }
+    .btn:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid #ffdc73; outline-offset: 4px; }
     .btn-primary { background: var(--blanco); color: var(--azul-medio); }
     .btn-secondary { background: var(--azul-medio); color: var(--blanco); }
 
@@ -168,6 +168,7 @@
       box-shadow: none;
       text-align: right;
     }
+    .accesos-flotantes { display: flex; flex-direction: column; align-items: flex-end; gap: .75rem; }
     .avatar-boton-wrap { position: relative; display: inline-block; }
     .btn-avatar {
       display: inline-flex;
@@ -183,7 +184,8 @@
       box-shadow: 0 8px 20px rgba(15,23,42,.25);
     }
     .btn-avatar img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
-    .avatar-boton-wrap::after {
+    .avatar-boton-wrap::after,
+    .juegos-boton-wrap::after {
       content: attr(data-tooltip);
       position: absolute;
       top: calc(100% + 10px);
@@ -202,18 +204,40 @@
       pointer-events: none;
     }
     .avatar-boton-wrap:hover::after,
-    .avatar-boton-wrap:focus-within::after {
+    .avatar-boton-wrap:focus-within::after,
+    .juegos-boton-wrap:hover::after,
+    .juegos-boton-wrap:focus-within::after {
       opacity: 1;
       visibility: visible;
       transform: translateY(0);
     }
+    .juegos-boton-wrap { position: relative; display: inline-block; }
+    .btn-juegos {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 96px;
+      height: 72px;
+      padding: .75rem;
+      border: 3px solid rgba(255,255,255,.75);
+      border-radius: 18px;
+      background: rgba(255,255,255,.95);
+      box-shadow: 0 8px 20px rgba(15,23,42,.25);
+      text-decoration: none;
+    }
+    .btn-juegos svg { width: 100%; height: 100%; display: block; }
+    /* El formulario se superpone al botón de juegos y no modifica su posición. */
     .zona-personal .formulario {
+      position: absolute;
+      top: 108px;
+      right: 0;
+      z-index: 2;
       width: 100%;
-      margin-top: 1rem;
+      margin: 0;
       padding: 1rem;
       border: 1px solid rgba(22,58,95,.12);
       border-radius: 18px;
-      background: rgba(255,255,255,.94);
+      background: rgba(255,255,255,.96);
       box-shadow: 0 8px 22px var(--sombra);
       text-align: left;
     }
@@ -245,6 +269,8 @@
       .contenido-portada { padding: 2rem 1.2rem; }
       .zona-personal { top: 1rem; right: 1rem; width: min(300px, calc(100vw - 2rem)); }
       .btn-avatar { width: 80px; height: 80px; }
+      .btn-juegos { width: 80px; height: 62px; }
+      .zona-personal .formulario { top: 92px; }
       .proyectos { grid-template-columns: 1fr; padding-bottom: 22vh; }
       .info-personal { padding: 2.5rem 1.2rem; }
       .sol { left: 62%; }
@@ -281,10 +307,26 @@
   <main id="contenido" hidden>
     <div class="barra-superior">
       <aside class="zona-personal">
-        <div class="avatar-boton-wrap" data-tooltip="Ir a la página personal">
-          <button class="btn btn-avatar" type="button" id="boton-informacion" aria-label="Ir a la página personal" title="Ir a la página personal">
-            <img src="avatar.png.jpg" alt="">
-          </button>
+        <div class="accesos-flotantes">
+          <div class="avatar-boton-wrap" data-tooltip="Ir a la página personal">
+            <button class="btn btn-avatar" type="button" id="boton-informacion" aria-label="Ir a la página personal" title="Ir a la página personal">
+              <img src="avatar.png.jpg" alt="">
+            </button>
+          </div>
+          <div class="juegos-boton-wrap" data-tooltip="Ir a los juegos">
+            <a class="btn-juegos" href="#proyectos" aria-label="Ir a los juegos" title="Ir a los juegos">
+              <svg viewBox="0 0 160 100" role="img" aria-label="Mando de videojuegos" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#171717" d="M38 17h84c12 0 21 8 25 20l11 43c3 12-10 20-20 12l-22-19H44L22 92C12 100-1 92 2 80l11-43c4-12 13-20 25-20Z"/>
+                <path fill="#fff" d="M38 37h30v9H38zM48.5 26.5h9v30h-9z"/>
+                <circle cx="108" cy="39" r="7" fill="#fff"/><circle cx="126" cy="53" r="7" fill="#fff"/>
+                <circle cx="108" cy="66" r="7" fill="#fff"/><circle cx="91" cy="53" r="7" fill="#fff"/>
+                <circle cx="79" cy="37" r="4" fill="#fff"/><circle cx="89" cy="37" r="4" fill="#fff"/>
+                <circle cx="79" cy="49" r="4" fill="#fff"/><circle cx="89" cy="49" r="4" fill="#fff"/>
+                <rect x="65" y="58" width="13" height="5" rx="2.5" fill="#fff"/>
+                <rect x="82" y="58" width="13" height="5" rx="2.5" fill="#fff"/>
+              </svg>
+            </a>
+          </div>
         </div>
         <form class="formulario" id="formulario-contrasena" hidden>
           <label for="contrasena">Introduce la contraseña:</label>
@@ -298,7 +340,7 @@
       </aside>
     </div>
 
-    <section class="proyectos" aria-label="Proyectos">
+    <section class="proyectos" id="proyectos" aria-label="Proyectos y juegos">
       <article class="card">
         <h2>Proyecto 1</h2>
         <p class="subtitulo">Ruben-house</p>
