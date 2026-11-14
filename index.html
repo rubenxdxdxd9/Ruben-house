@@ -20,30 +20,57 @@
     body { min-height: 100vh; background: #d98472; }
     [hidden] { display: none !important; }
 
-    /* Fondo de cielo y paisaje en bloques. */
-    .minecraft-scene { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; background: linear-gradient(180deg,#19345a 0%,#735078 34%,#e17b68 66%,#f5b875 100%); background-size: 100% 160%; animation: cielo-cambia 32s ease-in-out infinite alternate; }
+    .minecraft-scene {
+      position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
+      background: linear-gradient(180deg, #19345a 0%, #735078 34%, #e17b68 66%, #f5b875 100%);
+      background-size: 100% 160%; animation: cielo-cambia 32s ease-in-out infinite alternate;
+    }
     .minecraft-scene > * { position: absolute; }
-    .estrellas { inset: 0; opacity: .65; background-image: radial-gradient(circle,#fff4cf 1.2px,transparent 2px),radial-gradient(circle,#fff 1.2px,transparent 2px); background-size: 97px 83px,151px 127px; background-position: 12px 17px,55px 42px; animation: estrellas-brillan 5s ease-in-out infinite alternate; }
-    .sol { width: clamp(90px,14vw,170px); aspect-ratio: 1; top: 16%; left: 68%; background: #ffd88c; box-shadow: 0 0 35px 12px rgba(255,190,123,.35); clip-path: polygon(15% 0,85% 0,85% 10%,100% 10%,100% 85%,90% 85%,90% 100%,10% 100%,10% 90%,0 90%,0 15%,15% 15%); animation: sol-desciende 28s ease-in-out infinite alternate; }
+    .estrellas {
+      inset: 0; opacity: .65;
+      background-image: radial-gradient(circle, #fff4cf 1.2px, transparent 2px), radial-gradient(circle, #fff 1.2px, transparent 2px);
+      background-size: 97px 83px, 151px 127px; background-position: 12px 17px, 55px 42px;
+      animation: estrellas-brillan 5s ease-in-out infinite alternate;
+    }
+    .sol {
+      width: clamp(90px, 14vw, 170px); aspect-ratio: 1; top: 16%; left: 68%; background: #ffd88c;
+      box-shadow: 0 0 35px 12px rgba(255,190,123,.35);
+      clip-path: polygon(15% 0,85% 0,85% 10%,100% 10%,100% 85%,90% 85%,90% 100%,10% 100%,10% 90%,0 90%,0 15%,15% 15%);
+      animation: sol-desciende 28s ease-in-out infinite alternate;
+    }
     .nube { width: 120px; height: 22px; background: rgba(255,218,198,.42); box-shadow: 24px -15px 0 -2px rgba(255,218,198,.42),52px 0 rgba(255,218,198,.42),78px -10px 0 -3px rgba(255,218,198,.42); animation: nubes-viajan linear infinite; }
     .nube-una { top: 18%; left: -180px; animation-duration: 55s; }
     .nube-dos { top: 31%; left: -220px; transform: scale(.7); opacity: .65; animation-duration: 78s; animation-delay: -28s; }
     .nube-tres { top: 10%; left: -200px; transform: scale(.5); opacity: .5; animation-duration: 92s; animation-delay: -46s; }
-    .montanas-lejanas { inset: 38% -5% 0; opacity: .82; background: linear-gradient(135deg,transparent 0 39%,#5b506b 39% 61%,transparent 61%) 0 0/310px 100% repeat-x,linear-gradient(225deg,transparent 0 39%,#66506b 39% 61%,transparent 61%) 150px 0/360px 100% repeat-x; animation: montanas-se-mueven 45s linear infinite alternate; }
-    .montanas-cercanas { inset: 53% -5% 0; background: linear-gradient(135deg,transparent 0 36%,#443f59 36% 63%,transparent 63%) 40px 0/390px 100% repeat-x,linear-gradient(225deg,transparent 0 35%,#51435b 35% 64%,transparent 64%) 210px 15px/430px 100% repeat-x; animation: montanas-se-mueven 34s linear infinite alternate-reverse; }
-    .terreno { inset: auto 0 0; height: 22vh; min-height: 130px; background: repeating-linear-gradient(90deg,transparent 0 78px,rgba(42,54,43,.1) 78px 80px),linear-gradient(180deg,#91a95d 0%,#78964d 18%,#6f8b49 100%); background-size: 160px 100%,100% 100%; clip-path: polygon(0 22%,12% 22%,12% 13%,27% 13%,27% 20%,43% 20%,43% 9%,58% 9%,58% 18%,74% 18%,74% 11%,88% 11%,88% 22%,100% 22%,100% 100%,0 100%); }
-
+    .montanas-lejanas {
+      inset: 38% -5% 0; opacity: .82;
+      background: linear-gradient(135deg,transparent 0 39%,#5b506b 39% 61%,transparent 61%) 0 0/310px 100% repeat-x,
+                  linear-gradient(225deg,transparent 0 39%,#66506b 39% 61%,transparent 61%) 150px 0/360px 100% repeat-x;
+      animation: montanas-se-mueven 45s linear infinite alternate;
+    }
+    .montanas-cercanas {
+      inset: 53% -5% 0;
+      background: linear-gradient(135deg,transparent 0 36%,#443f59 36% 63%,transparent 63%) 40px 0/390px 100% repeat-x,
+                  linear-gradient(225deg,transparent 0 35%,#51435b 35% 64%,transparent 64%) 210px 15px/430px 100% repeat-x;
+      animation: montanas-se-mueven 34s linear infinite alternate-reverse;
+    }
+    .terreno {
+      inset: auto 0 0; height: 22vh; min-height: 130px;
+      background: repeating-linear-gradient(90deg,transparent 0 78px,rgba(42,54,43,.1) 78px 80px),linear-gradient(180deg,#91a95d 0%,#78964d 18%,#6f8b49 100%);
+      background-size: 160px 100%,100% 100%;
+      clip-path: polygon(0 22%,12% 22%,12% 13%,27% 13%,27% 20%,43% 20%,43% 9%,58% 9%,58% 18%,74% 18%,74% 11%,88% 11%,88% 22%,100% 22%,100% 100%,0 100%);
+    }
     body > :not(.minecraft-scene) { position: relative; z-index: 1; }
+
     .pantalla-inicio { min-height: 100vh; display: grid; place-items: center; padding: 2rem; text-align: center; color: var(--blanco); }
     .contenido-portada { width: min(100%,700px); padding: 2.5rem 2rem; border: 1px solid rgba(255,255,255,.2); border-radius: 24px; background: rgba(20,35,57,.48); box-shadow: 0 16px 40px rgba(0,0,0,.25); backdrop-filter: blur(7px); }
     .badge { display: inline-block; margin-bottom: 1rem; padding: .4rem .8rem; border: 1px solid rgba(255,255,255,.25); border-radius: 999px; background: rgba(255,255,255,.12); font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; }
     h1 { margin: 0; font-size: clamp(2.4rem,7vw,4.5rem); line-height: 1.1; }
     .contenido-portada p { margin: 1.2rem 0 2rem; font-size: clamp(1rem,2vw,1.3rem); color: rgba(255,255,255,.92); }
-    .btn { border: 0; border-radius: 999px; padding: .9rem 1.6rem; font-size: 1rem; font-weight: 700; cursor: pointer; transition: transform .2s ease,box-shadow .2s ease,background .2s ease; }
+    .btn { border: 0; border-radius: 999px; padding: .9rem 1.6rem; font-size: 1rem; font-weight: 700; cursor: pointer; transition: transform .2s ease,box-shadow .2s ease; }
     .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,0,0,.2); }
     .btn:focus-visible { outline: 3px solid #ffdc73; outline-offset: 4px; }
     .btn-primary { background: var(--blanco); color: var(--azul-medio); }
-    .btn-secondary { background: var(--azul-medio); color: var(--blanco); }
 
     main { min-height: 100vh; padding: 2rem 1.25rem 5rem; }
     .vista { width: min(100%,1100px); min-height: calc(100vh - 7rem); margin: 0 auto; }
@@ -57,10 +84,10 @@
     .boton-seccion strong { font-size: clamp(1.3rem,2.2vw,1.75rem); }
     .boton-seccion small { color: var(--gris-oscuro); font-size: .95rem; }
 
-    .barra-navegacion { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+    /* En las vistas interiores solo queda la flecha; se quitan las etiquetas numeradas duplicadas. */
+    .barra-navegacion { display: flex; justify-content: flex-start; align-items: center; margin-bottom: 1rem; }
     .boton-volver { width: 54px; height: 54px; padding: 0; border: 2px solid rgba(255,255,255,.75); border-radius: 50%; color: var(--azul-medio); background: rgba(255,255,255,.94); font-size: 1.8rem; line-height: 1; box-shadow: 0 8px 20px rgba(15,23,42,.22); cursor: pointer; }
     .boton-volver:hover { transform: translateX(-3px); }
-    .marca-seccion { color: var(--blanco); font-size: .95rem; font-weight: 700; }
     .vista-interior > h1 { margin: 2rem 0 1.5rem; font-size: clamp(2rem,5vw,3.4rem); }
     .panel { padding: clamp(1.5rem,4vw,2.5rem); border: 1px solid rgba(255,255,255,.65); border-radius: 24px; background: rgba(255,255,255,.94); box-shadow: 0 14px 32px var(--sombra); }
     .sobre-mi { max-width: 700px; margin: 0 auto; text-align: center; }
@@ -133,8 +160,8 @@
     </section>
 
     <section class="vista vista-interior" id="vista-sobre-mi" aria-labelledby="titulo-sobre-mi" hidden>
-      <div class="barra-navegacion"><button class="boton-volver" type="button" aria-label="Volver al menú">←</button><span class="marca-seccion">1 · Sobre mí</span></div>
-      <h1 id="titulo-sobre-mi">Sobre mí</h1>
+      <div class="barra-navegacion"><button class="boton-volver" type="button" aria-label="Volver al menú">←</button></div>
+      <h1 id="titulo-sobre-mi" tabindex="-1">Sobre mí</h1>
       <div class="panel sobre-mi">
         <img class="avatar-perfil" src="avatar.png.jpg" alt="Ilustración de perfil de Rubén">
         <h2>Rubén Andrés Arnaz</h2>
@@ -144,8 +171,8 @@
     </section>
 
     <section class="vista vista-interior" id="vista-proyectos" aria-labelledby="titulo-proyectos" hidden>
-      <div class="barra-navegacion"><button class="boton-volver" type="button" aria-label="Volver al menú">←</button><span class="marca-seccion">2 · Proyectos</span></div>
-      <h1 id="titulo-proyectos">Mis proyectos</h1>
+      <div class="barra-navegacion"><button class="boton-volver" type="button" aria-label="Volver al menú">←</button></div>
+      <h1 id="titulo-proyectos" tabindex="-1">Mis proyectos</h1>
       <div class="proyectos">
         <article class="proyecto-card"><h2>Proyecto 1</h2><p class="subtitulo">Ruben-house</p><div class="proyecto-vacio">La imagen y la información de este proyecto estarán disponibles próximamente.</div></article>
         <article class="proyecto-card"><h2>Proyecto 2</h2><p class="subtitulo">Segundo proyecto</p><div class="proyecto-vacio">Aquí puedes añadir la información o imagen del segundo proyecto.</div></article>
@@ -153,8 +180,8 @@
     </section>
 
     <section class="vista vista-interior" id="vista-otros" aria-labelledby="titulo-otros" hidden>
-      <div class="barra-navegacion"><button class="boton-volver" type="button" aria-label="Volver al menú">←</button><span class="marca-seccion">3 · Otros</span></div>
-      <h1 id="titulo-otros">Otros</h1>
+      <div class="barra-navegacion"><button class="boton-volver" type="button" aria-label="Volver al menú">←</button></div>
+      <h1 id="titulo-otros" tabindex="-1">Otros</h1>
       <div class="otros-lista" aria-label="Juegos">
         <article class="otro-item"><strong>Juego 1</strong><span>Próximamente</span></article>
         <article class="otro-item"><strong>Juego 2</strong><span>Próximamente</span></article>
@@ -175,9 +202,7 @@
     };
 
     function mostrarVista(nombre) {
-      Object.entries(vistas).forEach(([clave, elemento]) => {
-        elemento.hidden = clave !== nombre;
-      });
+      Object.entries(vistas).forEach(([clave, elemento]) => { elemento.hidden = clave !== nombre; });
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -193,7 +218,7 @@
       boton.addEventListener('click', () => {
         const destino = boton.dataset.vista;
         mostrarVista(destino);
-        document.getElementById(`titulo-${destino === 'sobre-mi' ? 'sobre-mi' : destino}`).focus?.();
+        document.getElementById(`titulo-${destino === 'sobre-mi' ? 'sobre-mi' : destino}`).focus();
       });
     });
 
@@ -206,7 +231,7 @@
 
     botonAvatar.addEventListener('click', () => {
       mostrarVista('sobre-mi');
-      document.getElementById('titulo-sobre-mi').focus?.();
+      document.getElementById('titulo-sobre-mi').focus();
     });
   </script>
 </body>
