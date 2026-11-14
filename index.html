@@ -309,7 +309,7 @@
       <aside class="zona-personal">
         <div class="accesos-flotantes">
           <div class="avatar-boton-wrap" data-tooltip="Ir a la página personal">
-            <button class="btn btn-avatar" type="button" id="boton-informacion" aria-label="Ir a la página personal" title="Ir a la página personal">
+            <button class="btn btn-avatar" type="button" id="boton-informacion" aria-label="Ir a la página personal" aria-expanded="false" aria-controls="formulario-contrasena" title="Ir a la página personal">
               <img src="avatar.png.jpg" alt="">
             </button>
           </div>
@@ -378,8 +378,17 @@
     });
 
     botonInformacion.addEventListener('click', () => {
-      formulario.hidden = false;
-      campoPassword.focus();
+      const abrirFormulario = formulario.hidden;
+      formulario.hidden = !abrirFormulario;
+      botonInformacion.setAttribute('aria-expanded', String(abrirFormulario));
+
+      if (abrirFormulario) {
+        campoPassword.focus();
+      } else {
+        campoPassword.value = '';
+        mensajeError.textContent = '';
+        imagenErrorWrap.hidden = true;
+      }
     });
 
     formulario.addEventListener('submit', (event) => {
@@ -406,6 +415,7 @@
       seccionPersonal.hidden = true;
       contenido.hidden = false;
       formulario.hidden = true;
+      botonInformacion.setAttribute('aria-expanded', 'false');
       campoPassword.value = '';
       mensajeError.textContent = '';
       imagenErrorWrap.hidden = true;
