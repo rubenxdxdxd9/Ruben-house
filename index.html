@@ -154,46 +154,27 @@
     .btn-secondary { background: var(--azul-medio); color: var(--blanco); }
 
     main { max-width: 1100px; min-height: 100vh; margin: 0 auto; padding: 2rem 1rem 4rem; }
-    .barra-superior {
-      display: flex;
-      justify-content: flex-end;
-      align-items: flex-start;
-      margin-bottom: 2rem;
-    }
-    .zona-personal {
-      width: auto;
-      padding: 0;
-      background: transparent;
-      border: 0;
-      border-radius: 0;
-      box-shadow: none;
-    }
+    .barra-superior { display: flex; justify-content: flex-end; align-items: flex-start; margin-bottom: 1rem; }
+    .zona-personal { width: auto; padding: 0; background: transparent; border: 0; border-radius: 0; box-shadow: none; }
     .btn-avatar {
-      width: clamp(120px, 17vw, 180px);
-      height: clamp(120px, 17vw, 180px);
-      padding: 0;
-      border-radius: 50%;
-      overflow: hidden;
-      background: transparent;
-      box-shadow: 0 14px 28px rgba(15, 23, 42, .25);
-      border: 4px solid rgba(255,255,255,.35);
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      width: 96px;
+      height: 96px;
+      padding: 0;
+      overflow: hidden;
+      border: 4px solid rgba(255,255,255,.75);
+      border-radius: 50%;
+      background: var(--blanco);
+      box-shadow: 0 8px 20px rgba(15,23,42,.25);
     }
-    .btn-avatar img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
+    .btn-avatar img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
     .zona-personal .formulario { margin-top: 1rem; }
     .proyectos { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.5rem; padding: 1rem 0 25vh; }
     .card { background: rgba(255,255,255,.93); border-radius: 24px; box-shadow: 0 12px 30px var(--sombra); padding: 2rem 1.5rem; border: 1px solid rgba(22,58,95,.08); text-align: center; }
     h2 { margin: 0; font-size: clamp(1.8rem,3vw,2.8rem); color: var(--azul-oscuro); }
     .subtitulo { font-size: 1.1rem; color: var(--gris-oscuro); margin: .8rem 0 1.5rem; }
-    .imagen-proyecto { display: block; width: min(100%,430px); height: auto; border-radius: 18px; margin: 1.5rem auto; box-shadow: 0 16px 30px rgba(15,23,42,.15); }
     .proyecto-vacio { min-height: 180px; display: grid; place-items: center; padding: 1.5rem; margin-top: 1.5rem; border: 2px dashed #bfd3eb; border-radius: 18px; color: var(--gris-oscuro); background: rgba(255,255,255,.55); }
     .formulario { max-width: 360px; margin: 1.5rem auto 0; display: grid; gap: .8rem; text-align: left; }
     .formulario label { font-weight: bold; color: var(--azul-oscuro); }
@@ -208,7 +189,6 @@
     .info-personal .curso { display: inline-block; margin: 0 0 2rem; padding: .55rem 1rem; border-radius: 999px; color: var(--azul-medio); background: #edf5fd; font-size: 1.05rem; font-weight: bold; }
     [hidden] { display: none !important; }
 
-    @keyframes aparecer { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes cielo-cambia { from { background-position: 0 0; } to { background-position: 0 100%; } }
     @keyframes estrellas-brillan { from { opacity: .25; } to { opacity: .8; } }
     @keyframes sol-desciende { from { transform: translateY(-5px); } to { transform: translateY(70px); } }
@@ -217,13 +197,12 @@
 
     @media (max-width: 700px) {
       .contenido-portada { padding: 2rem 1.2rem; }
-      .btn { width: 100%; }
-      .barra-superior { justify-content: center; }
+      .barra-superior { justify-content: flex-end; }
+      .btn-avatar { width: 80px; height: 80px; }
       .proyectos { grid-template-columns: 1fr; padding-bottom: 22vh; }
       .info-personal { padding: 2.5rem 1.2rem; }
       .sol { left: 62%; }
       .terreno { height: 18vh; }
-      .btn-avatar { width: 130px; height: 130px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -257,7 +236,7 @@
     <div class="barra-superior">
       <aside class="zona-personal">
         <button class="btn btn-avatar" type="button" id="boton-informacion" aria-label="Página personal">
-          <img src="avatar.png" alt="Avatar de Rubén">
+          <img src="avatar.png.jpg" alt="Avatar de Rubén">
         </button>
         <form class="formulario" id="formulario-contrasena" hidden>
           <label for="contrasena">Introduce la contraseña:</label>
@@ -275,7 +254,7 @@
       <article class="card">
         <h2>Proyecto 1</h2>
         <p class="subtitulo">Ruben-house</p>
-        <img class="imagen-proyecto" alt="Proyecto Ruben-house" src="https://github.com/user-attachments/assets/2399f6a0-ffcc-421a-9b70-b200dd2897fb">
+        <div class="proyecto-vacio">La imagen de este proyecto estará disponible próximamente.</div>
       </article>
       <article class="card">
         <h2>Proyecto 2</h2>
