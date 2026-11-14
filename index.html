@@ -155,7 +155,20 @@
 
     main { max-width: 1100px; min-height: 100vh; margin: 0 auto; padding: 2rem 1rem 4rem; }
     .barra-superior { display: flex; justify-content: flex-end; align-items: flex-start; margin-bottom: 1rem; }
-    .zona-personal { width: auto; padding: 0; background: transparent; border: 0; border-radius: 0; box-shadow: none; }
+    .zona-personal {
+      position: fixed;
+      z-index: 5;
+      top: 2rem;
+      right: clamp(1rem, 4vw, 4rem);
+      width: min(320px, calc(100vw - 2rem));
+      padding: 0;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      text-align: right;
+    }
+    .avatar-boton-wrap { position: relative; display: inline-block; }
     .btn-avatar {
       display: inline-flex;
       align-items: center;
@@ -170,15 +183,48 @@
       box-shadow: 0 8px 20px rgba(15,23,42,.25);
     }
     .btn-avatar img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
-    .zona-personal .formulario { margin-top: 1rem; }
+    .avatar-boton-wrap::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      padding: .55rem .8rem;
+      border-radius: 8px;
+      background: var(--azul-oscuro);
+      color: var(--blanco);
+      font-size: .9rem;
+      font-weight: bold;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-4px);
+      transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
+      pointer-events: none;
+    }
+    .avatar-boton-wrap:hover::after,
+    .avatar-boton-wrap:focus-within::after {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .zona-personal .formulario {
+      width: 100%;
+      margin-top: 1rem;
+      padding: 1rem;
+      border: 1px solid rgba(22,58,95,.12);
+      border-radius: 18px;
+      background: rgba(255,255,255,.94);
+      box-shadow: 0 8px 22px var(--sombra);
+      text-align: left;
+    }
     .proyectos { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.5rem; padding: 1rem 0 25vh; }
     .card { background: rgba(255,255,255,.93); border-radius: 24px; box-shadow: 0 12px 30px var(--sombra); padding: 2rem 1.5rem; border: 1px solid rgba(22,58,95,.08); text-align: center; }
     h2 { margin: 0; font-size: clamp(1.8rem,3vw,2.8rem); color: var(--azul-oscuro); }
     .subtitulo { font-size: 1.1rem; color: var(--gris-oscuro); margin: .8rem 0 1.5rem; }
     .proyecto-vacio { min-height: 180px; display: grid; place-items: center; padding: 1.5rem; margin-top: 1.5rem; border: 2px dashed #bfd3eb; border-radius: 18px; color: var(--gris-oscuro); background: rgba(255,255,255,.55); }
-    .formulario { max-width: 360px; margin: 1.5rem auto 0; display: grid; gap: .8rem; text-align: left; }
     .formulario label { font-weight: bold; color: var(--azul-oscuro); }
     .formulario input { width: 100%; padding: .9rem 1rem; border: 1px solid #bfd3eb; border-radius: 12px; font-size: 1rem; background: #fff; }
+    .formulario { display: grid; gap: .8rem; }
     .error { color: var(--rojo); min-height: 1.2em; font-weight: bold; margin-top: .3rem; text-align: center; }
     .imagen-error-wrap { width: min(100%,400px); height: 220px; overflow: hidden; margin: .5rem auto 0; border-radius: 12px; box-shadow: 0 10px 24px rgba(15,23,42,.18); background: #000; }
     .imagen-error { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 18%; transform: scale(1.05); }
@@ -197,7 +243,7 @@
 
     @media (max-width: 700px) {
       .contenido-portada { padding: 2rem 1.2rem; }
-      .barra-superior { justify-content: flex-end; }
+      .zona-personal { top: 1rem; right: 1rem; width: min(300px, calc(100vw - 2rem)); }
       .btn-avatar { width: 80px; height: 80px; }
       .proyectos { grid-template-columns: 1fr; padding-bottom: 22vh; }
       .info-personal { padding: 2.5rem 1.2rem; }
@@ -235,9 +281,11 @@
   <main id="contenido" hidden>
     <div class="barra-superior">
       <aside class="zona-personal">
-        <button class="btn btn-avatar" type="button" id="boton-informacion" aria-label="Página personal">
-          <img src="avatar.png.jpg" alt="Avatar de Rubén">
-        </button>
+        <div class="avatar-boton-wrap" data-tooltip="Ir a la página personal">
+          <button class="btn btn-avatar" type="button" id="boton-informacion" aria-label="Ir a la página personal" title="Ir a la página personal">
+            <img src="avatar.png.jpg" alt="">
+          </button>
+        </div>
         <form class="formulario" id="formulario-contrasena" hidden>
           <label for="contrasena">Introduce la contraseña:</label>
           <input id="contrasena" type="password" placeholder="Contraseña" autocomplete="off" required>
