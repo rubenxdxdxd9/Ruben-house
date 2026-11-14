@@ -84,7 +84,7 @@
     .boton-seccion strong { font-size: clamp(1.3rem,2.2vw,1.75rem); }
     .boton-seccion small { color: var(--gris-oscuro); font-size: .95rem; }
 
-    /* En las vistas interiores solo queda la flecha; se quitan las etiquetas numeradas duplicadas. */
+    /* La navegación interior muestra solo la flecha, sin etiquetas duplicadas. */
     .barra-navegacion { display: flex; justify-content: flex-start; align-items: center; margin-bottom: 1rem; }
     .boton-volver { width: 54px; height: 54px; padding: 0; border: 2px solid rgba(255,255,255,.75); border-radius: 50%; color: var(--azul-medio); background: rgba(255,255,255,.94); font-size: 1.8rem; line-height: 1; box-shadow: 0 8px 20px rgba(15,23,42,.22); cursor: pointer; }
     .boton-volver:hover { transform: translateX(-3px); }
@@ -105,11 +105,6 @@
     .otro-item strong { font-size: 1.25rem; }
     .otro-item span { color: var(--gris-oscuro); }
 
-    .avatar-flotante { position: fixed; z-index: 5; top: 1.25rem; right: 1.5rem; width: 76px; height: 76px; padding: 0; border: 4px solid rgba(255,255,255,.9); border-radius: 50%; overflow: hidden; background: #fff; box-shadow: 0 8px 20px rgba(15,23,42,.25); cursor: pointer; }
-    .avatar-flotante img { display: block; width: 100%; height: 100%; object-fit: cover; }
-    .avatar-flotante::after { content: "Ir a Sobre mí"; position: absolute; top: 50%; right: calc(100% + 10px); transform: translate(4px,-50%); padding: .55rem .75rem; border-radius: 8px; background: var(--azul-oscuro); color: #fff; font-size: .85rem; font-weight: 700; white-space: nowrap; opacity: 0; visibility: hidden; transition: opacity .18s ease,transform .18s ease,visibility .18s ease; pointer-events: none; }
-    .avatar-flotante:hover::after, .avatar-flotante:focus-visible::after { opacity: 1; visibility: visible; transform: translate(0,-50%); }
-
     @media (max-width: 760px) {
       .menu-principal { grid-template-columns: 1fr; max-width: 460px; }
       .boton-seccion { min-height: 155px; }
@@ -117,8 +112,8 @@
       .proyectos { grid-template-columns: 1fr; }
       .otros-lista { grid-template-columns: 1fr; max-width: 460px; }
       .otro-item { min-height: 125px; }
-      .avatar-flotante { top: .8rem; right: .8rem; width: 60px; height: 60px; }
-      .tablero h1 { max-width: 70%; font-size: clamp(2rem,8vw,3.2rem); }
+      .tablero h1 { max-width: 100%; font-size: clamp(2rem,8vw,3.2rem); }
+      main { padding: 1.25rem 1rem 3rem; }
     }
     @media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
     @keyframes cielo-cambia { from { background-position: 0 0; } to { background-position: 0 100%; } }
@@ -134,10 +129,6 @@
     <div class="nube nube-una"></div><div class="nube nube-dos"></div><div class="nube nube-tres"></div>
     <div class="montanas-lejanas"></div><div class="montanas-cercanas"></div><div class="terreno"></div>
   </div>
-
-  <button class="avatar-flotante" id="boton-avatar" type="button" aria-label="Ir a Sobre mí" title="Ir a Sobre mí" hidden>
-    <img src="avatar.png.jpg" alt="">
-  </button>
 
   <section class="pantalla-inicio" id="pantalla-inicio">
     <div class="contenido-portada">
@@ -193,7 +184,6 @@
   <script>
     const pantallaInicio = document.getElementById('pantalla-inicio');
     const contenido = document.getElementById('contenido');
-    const botonAvatar = document.getElementById('boton-avatar');
     const vistas = {
       inicio: document.getElementById('vista-inicio'),
       'sobre-mi': document.getElementById('vista-sobre-mi'),
@@ -202,14 +192,15 @@
     };
 
     function mostrarVista(nombre) {
-      Object.entries(vistas).forEach(([clave, elemento]) => { elemento.hidden = clave !== nombre; });
+      Object.entries(vistas).forEach(([clave, elemento]) => {
+        elemento.hidden = clave !== nombre;
+      });
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     document.getElementById('boton-inicio').addEventListener('click', () => {
       pantallaInicio.hidden = true;
       contenido.hidden = false;
-      botonAvatar.hidden = false;
       mostrarVista('inicio');
       document.querySelector('#vista-inicio .boton-seccion').focus();
     });
@@ -218,7 +209,8 @@
       boton.addEventListener('click', () => {
         const destino = boton.dataset.vista;
         mostrarVista(destino);
-        document.getElementById(`titulo-${destino === 'sobre-mi' ? 'sobre-mi' : destino}`).focus();
+        const titulo = document.getElementById(`titulo-${destino}`);
+        if (titulo) titulo.focus();
       });
     });
 
@@ -227,11 +219,6 @@
         mostrarVista('inicio');
         document.querySelector('#vista-inicio .boton-seccion').focus();
       });
-    });
-
-    botonAvatar.addEventListener('click', () => {
-      mostrarVista('sobre-mi');
-      document.getElementById('titulo-sobre-mi').focus();
     });
   </script>
 </body>
