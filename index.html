@@ -27,7 +27,6 @@
 
     body { min-height: 100vh; background: #d98472; }
 
-    /* Fondo CSS ligero, animado y visible en toda la página. */
     .minecraft-scene {
       position: fixed;
       inset: 0;
@@ -88,7 +87,6 @@
       animation: montanas-se-mueven 34s linear infinite alternate-reverse;
     }
 
-    /* Suelo de césped únicamente, sin capa marrón de tierra. */
     .terreno {
       inset: auto 0 0;
       height: 22vh;
@@ -101,7 +99,6 @@
     }
 
     .vegetacion { display: none; }
-
     body > :not(.minecraft-scene) { position: relative; z-index: 1; }
 
     .pantalla-inicio {
@@ -211,6 +208,16 @@
       visibility: visible;
       transform: translateY(0);
     }
+    /* El aviso del avatar aparece a su izquierda para no tapar el botón de juegos. */
+    .avatar-boton-wrap::after {
+      top: 50%;
+      right: calc(100% + 12px);
+      transform: translate(4px, -50%);
+    }
+    .avatar-boton-wrap:hover::after,
+    .avatar-boton-wrap:focus-within::after {
+      transform: translate(0, -50%);
+    }
     .juegos-boton-wrap { position: relative; display: inline-block; }
     .btn-juegos {
       display: inline-flex;
@@ -226,7 +233,6 @@
       text-decoration: none;
     }
     .btn-juegos svg { width: 100%; height: 100%; display: block; }
-    /* El formulario se superpone al botón de juegos y no modifica su posición. */
     .zona-personal .formulario {
       position: absolute;
       top: 108px;
